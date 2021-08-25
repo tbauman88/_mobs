@@ -1,0 +1,626 @@
+{
+  "2021-08-23": [
+    {
+      "id": 1515,
+      "title": "Tic Tac Toe in React pt. 2",
+      "topic": "Let's continue our work creating Tic Tac Toe using React\n\nAll are welcome",
+      "location": "< Login to see the location >",
+      "discord_channel_id": null,
+      "date": "2021-08-23",
+      "start_time": "02:00 pm",
+      "end_time": "03:30 pm",
+      "is_public": true,
+      "created_at": "2021-08-20T13:23:03.000000Z",
+      "updated_at": "2021-08-20T17:50:23.000000Z",
+      "attendee_limit": 4,
+      "owner": {
+        "id": 5,
+        "name": "Nick Down",
+        "github_nickname": "nickdown",
+        "is_vehikl_member": true,
+        "avatar": "https:\/\/avatars3.githubusercontent.com\/u\/5014611?v=4",
+        "email_verified_at": null,
+        "created_at": null,
+        "updated_at": null,
+        "pivot": {
+          "growth_session_id": 1515,
+          "user_id": 5
+        }
+      },
+      "attendees": [
+        {
+          "id": 123,
+          "name": "Guest",
+          "github_nickname": "",
+          "is_vehikl_member": false,
+          "avatar": "https:\/\/growth.vehikl.com\/images\/guest-avatar.webp",
+          "email_verified_at": null,
+          "created_at": "2021-08-16T15:30:12.000000Z",
+          "updated_at": "2021-08-16T15:30:12.000000Z",
+          "pivot": {
+            "growth_session_id": 1515,
+            "user_id": 123
+          }
+        },
+        {
+          "id": 129,
+          "name": "Guest",
+          "github_nickname": "",
+          "is_vehikl_member": false,
+          "avatar": "https:\/\/growth.vehikl.com\/images\/guest-avatar.webp",
+          "email_verified_at": null,
+          "created_at": "2021-08-17T21:13:49.000000Z",
+          "updated_at": "2021-08-17T21:13:49.000000Z",
+          "pivot": {
+            "growth_session_id": 1515,
+            "user_id": 129
+          }
+        },
+        {
+          "id": 136,
+          "name": "Guest",
+          "github_nickname": "",
+          "is_vehikl_member": false,
+          "avatar": "https:\/\/growth.vehikl.com\/images\/guest-avatar.webp",
+          "email_verified_at": null,
+          "created_at": "2021-08-20T15:17:27.000000Z",
+          "updated_at": "2021-08-20T15:17:27.000000Z",
+          "pivot": {
+            "growth_session_id": 1515,
+            "user_id": 136
+          }
+        },
+        {
+          "id": 135,
+          "name": "Guest",
+          "github_nickname": "",
+          "is_vehikl_member": false,
+          "avatar": "https:\/\/growth.vehikl.com\/images\/guest-avatar.webp",
+          "email_verified_at": null,
+          "created_at": "2021-08-19T21:27:15.000000Z",
+          "updated_at": "2021-08-19T21:27:15.000000Z",
+          "pivot": {
+            "growth_session_id": 1515,
+            "user_id": 135
+          }
+        }
+      ],
+      "comments": []
+    },
+    {
+      "id": 1532,
+      "title": "NASA App - Mars Rover images",
+      "topic": "Continuing with the NASA app pulling data from the NASA Api, let's create a diagram of the MARS Rover and all available cameras, and allow the user to click a button to view images from that camera. \n\nTech stack is React\/Typescript\/Tailwind",
+      "location": "< Login to see the location >",
+      "discord_channel_id": null,
+      "date": "2021-08-23",
+      "start_time": "04:00 pm",
+      "end_time": "05:00 pm",
+      "is_public": true,
+      "created_at": "2021-08-23T15:32:05.000000Z",
+      "updated_at": "2021-08-23T20:00:12.000000Z",
+      "attendee_limit": null,
+      "owner": {
+        "id": 45,
+        "name": "Justin Struk",
+        "github_nickname": "JStruk",
+        "is_vehikl_member": true,
+        "avatar": "https:\/\/avatars1.githubusercontent.com\/u\/10167488?v=4",
+        "email_verified_at": null,
+        "created_at": "2020-08-24T13:09:00.000000Z",
+        "updated_at": "2020-08-24T13:09:00.000000Z",
+        "pivot": {
+          "growth_session_id": 1532,
+          "user_id": 45
+        }
+      },
+      "attendees": [
+        {
+          "id": 138,
+          "name": "Guest",
+          "github_nickname": "",
+          "is_vehikl_member": false,
+          "avatar": "https:\/\/growth.vehikl.com\/images\/guest-avatar.webp",
+          "email_verified_at": null,
+          "created_at": "2021-08-21T03:57:49.000000Z",
+          "updated_at": "2021-08-21T03:57:49.000000Z",
+          "pivot": {
+            "growth_session_id": 1532,
+            "user_id": 138
+          }
+        },
+        {
+          "id": 46,
+          "name": "Jeffrey Polasz",
+          "github_nickname": "DigitalEpidemic",
+          "is_vehikl_member": true,
+          "avatar": "https:\/\/avatars0.githubusercontent.com\/u\/10665325?v=4",
+          "email_verified_at": null,
+          "created_at": "2020-09-17T19:39:31.000000Z",
+          "updated_at": "2020-09-17T19:39:31.000000Z",
+          "pivot": {
+            "growth_session_id": 1532,
+            "user_id": 46
+          }
+        },
+        {
+          "id": 140,
+          "name": "Guest",
+          "github_nickname": "",
+          "is_vehikl_member": false,
+          "avatar": "https:\/\/growth.vehikl.com\/images\/guest-avatar.webp",
+          "email_verified_at": null,
+          "created_at": "2021-08-23T17:58:52.000000Z",
+          "updated_at": "2021-08-23T17:58:52.000000Z",
+          "pivot": {
+            "growth_session_id": 1532,
+            "user_id": 140
+          }
+        }
+      ],
+      "comments": []
+    }
+  ],
+  "2021-08-24": [
+    {
+      "id": 1542,
+      "title": "Ditch Excel let's learn Awk",
+      "topic": "Awk is a powerful text manipulator built right into our terminal!\n\nLet's figure out how to extract info from a csv that would normally require a spreadsheet!",
+      "location": "< Login to see the location >",
+      "discord_channel_id": null,
+      "date": "2021-08-24",
+      "start_time": "03:45 pm",
+      "end_time": "05:00 pm",
+      "is_public": true,
+      "created_at": "2021-08-24T13:30:57.000000Z",
+      "updated_at": "2021-08-24T19:42:55.000000Z",
+      "attendee_limit": null,
+      "owner": {
+        "id": 5,
+        "name": "Nick Down",
+        "github_nickname": "nickdown",
+        "is_vehikl_member": true,
+        "avatar": "https:\/\/avatars3.githubusercontent.com\/u\/5014611?v=4",
+        "email_verified_at": null,
+        "created_at": null,
+        "updated_at": null,
+        "pivot": {
+          "growth_session_id": 1542,
+          "user_id": 5
+        }
+      },
+      "attendees": [
+        {
+          "id": 73,
+          "name": "Daniel Baer",
+          "github_nickname": "DeltaBravo",
+          "is_vehikl_member": true,
+          "avatar": "https:\/\/avatars.githubusercontent.com\/u\/637088?v=4",
+          "email_verified_at": null,
+          "created_at": "2021-05-02T23:46:08.000000Z",
+          "updated_at": "2021-05-02T23:46:08.000000Z",
+          "pivot": {
+            "growth_session_id": 1542,
+            "user_id": 73
+          }
+        },
+        {
+          "id": 62,
+          "name": "Ian Van Harten",
+          "github_nickname": "ianvanharten",
+          "is_vehikl_member": true,
+          "avatar": "https:\/\/avatars.githubusercontent.com\/u\/65201265?v=4",
+          "email_verified_at": null,
+          "created_at": "2021-02-26T19:12:09.000000Z",
+          "updated_at": "2021-02-26T19:12:09.000000Z",
+          "pivot": {
+            "growth_session_id": 1542,
+            "user_id": 62
+          }
+        },
+        {
+          "id": 127,
+          "name": "Guest",
+          "github_nickname": "",
+          "is_vehikl_member": false,
+          "avatar": "https:\/\/growth.vehikl.com\/images\/guest-avatar.webp",
+          "email_verified_at": null,
+          "created_at": "2021-08-17T17:26:19.000000Z",
+          "updated_at": "2021-08-17T17:26:19.000000Z",
+          "pivot": {
+            "growth_session_id": 1542,
+            "user_id": 127
+          }
+        },
+        {
+          "id": 90,
+          "name": "Guest",
+          "github_nickname": "",
+          "is_vehikl_member": false,
+          "avatar": "https:\/\/growth.vehikl.com\/images\/guest-avatar.webp",
+          "email_verified_at": null,
+          "created_at": "2021-06-02T22:15:08.000000Z",
+          "updated_at": "2021-06-02T22:15:08.000000Z",
+          "pivot": {
+            "growth_session_id": 1542,
+            "user_id": 90
+          }
+        }
+      ],
+      "comments": [
+        {
+          "id": 388,
+          "growth_session_id": 1542,
+          "user_id": 127,
+          "content": "Is there a meeting link?",
+          "created_at": "2021-08-24T19:43:46.000000Z",
+          "updated_at": "2021-08-24T19:43:46.000000Z",
+          "time_stamp": "1 hour ago",
+          "user": {
+            "id": 127,
+            "name": "Brock Sawlor",
+            "github_nickname": "bsawlor",
+            "is_vehikl_member": false,
+            "avatar": "https:\/\/avatars.githubusercontent.com\/u\/84194252?v=4",
+            "email_verified_at": null,
+            "created_at": "2021-08-17T17:26:19.000000Z",
+            "updated_at": "2021-08-17T17:26:19.000000Z"
+          }
+        }
+      ]
+    }
+  ],
+  "2021-08-25": [
+    {
+      "id": 1505,
+      "title": "Lets practice PHP",
+      "topic": "Lets do some exercisms (exercism.io) on PHP to get more used to the language.\n\nEveryone is welcome!",
+      "location": "< Login to see the location >",
+      "discord_channel_id": null,
+      "date": "2021-08-25",
+      "start_time": "02:00 pm",
+      "end_time": "03:30 pm",
+      "is_public": true,
+      "created_at": "2021-08-19T13:50:35.000000Z",
+      "updated_at": "2021-08-19T13:50:35.000000Z",
+      "attendee_limit": 4,
+      "owner": {
+        "id": 1,
+        "name": "Felipe Flor",
+        "github_nickname": "FRFlor",
+        "is_vehikl_member": true,
+        "avatar": "https:\/\/avatars3.githubusercontent.com\/u\/22578748?v=4",
+        "email_verified_at": null,
+        "created_at": null,
+        "updated_at": null,
+        "pivot": {
+          "growth_session_id": 1505,
+          "user_id": 1
+        }
+      },
+      "attendees": [
+        {
+          "id": 133,
+          "name": "Guest",
+          "github_nickname": "",
+          "is_vehikl_member": false,
+          "avatar": "https:\/\/growth.vehikl.com\/images\/guest-avatar.webp",
+          "email_verified_at": null,
+          "created_at": "2021-08-19T15:59:35.000000Z",
+          "updated_at": "2021-08-19T15:59:35.000000Z",
+          "pivot": {
+            "growth_session_id": 1505,
+            "user_id": 133
+          }
+        },
+        {
+          "id": 131,
+          "name": "Guest",
+          "github_nickname": "",
+          "is_vehikl_member": false,
+          "avatar": "https:\/\/growth.vehikl.com\/images\/guest-avatar.webp",
+          "email_verified_at": null,
+          "created_at": "2021-08-18T20:41:39.000000Z",
+          "updated_at": "2021-08-18T20:41:39.000000Z",
+          "pivot": {
+            "growth_session_id": 1505,
+            "user_id": 131
+          }
+        },
+        {
+          "id": 127,
+          "name": "Guest",
+          "github_nickname": "",
+          "is_vehikl_member": false,
+          "avatar": "https:\/\/growth.vehikl.com\/images\/guest-avatar.webp",
+          "email_verified_at": null,
+          "created_at": "2021-08-17T17:26:19.000000Z",
+          "updated_at": "2021-08-17T17:26:19.000000Z",
+          "pivot": {
+            "growth_session_id": 1505,
+            "user_id": 127
+          }
+        },
+        {
+          "id": 135,
+          "name": "Guest",
+          "github_nickname": "",
+          "is_vehikl_member": false,
+          "avatar": "https:\/\/growth.vehikl.com\/images\/guest-avatar.webp",
+          "email_verified_at": null,
+          "created_at": "2021-08-19T21:27:15.000000Z",
+          "updated_at": "2021-08-19T21:27:15.000000Z",
+          "pivot": {
+            "growth_session_id": 1505,
+            "user_id": 135
+          }
+        }
+      ],
+      "comments": []
+    },
+    {
+      "id": 1516,
+      "title": "Tic Tac Toe in React pt. 3",
+      "topic": "Let's continue our work creating Tic Tac Toe using React\n\nAll are welcome",
+      "location": "< Login to see the location >",
+      "discord_channel_id": null,
+      "date": "2021-08-25",
+      "start_time": "03:45 pm",
+      "end_time": "05:00 pm",
+      "is_public": true,
+      "created_at": "2021-08-20T13:23:45.000000Z",
+      "updated_at": "2021-08-23T13:37:56.000000Z",
+      "attendee_limit": 4,
+      "owner": {
+        "id": 5,
+        "name": "Nick Down",
+        "github_nickname": "nickdown",
+        "is_vehikl_member": true,
+        "avatar": "https:\/\/avatars3.githubusercontent.com\/u\/5014611?v=4",
+        "email_verified_at": null,
+        "created_at": null,
+        "updated_at": null,
+        "pivot": {
+          "growth_session_id": 1516,
+          "user_id": 5
+        }
+      },
+      "attendees": [
+        {
+          "id": 127,
+          "name": "Guest",
+          "github_nickname": "",
+          "is_vehikl_member": false,
+          "avatar": "https:\/\/growth.vehikl.com\/images\/guest-avatar.webp",
+          "email_verified_at": null,
+          "created_at": "2021-08-17T17:26:19.000000Z",
+          "updated_at": "2021-08-17T17:26:19.000000Z",
+          "pivot": {
+            "growth_session_id": 1516,
+            "user_id": 127
+          }
+        },
+        {
+          "id": 90,
+          "name": "Guest",
+          "github_nickname": "",
+          "is_vehikl_member": false,
+          "avatar": "https:\/\/growth.vehikl.com\/images\/guest-avatar.webp",
+          "email_verified_at": null,
+          "created_at": "2021-06-02T22:15:08.000000Z",
+          "updated_at": "2021-06-02T22:15:08.000000Z",
+          "pivot": {
+            "growth_session_id": 1516,
+            "user_id": 90
+          }
+        },
+        {
+          "id": 123,
+          "name": "Guest",
+          "github_nickname": "",
+          "is_vehikl_member": false,
+          "avatar": "https:\/\/growth.vehikl.com\/images\/guest-avatar.webp",
+          "email_verified_at": null,
+          "created_at": "2021-08-16T15:30:12.000000Z",
+          "updated_at": "2021-08-16T15:30:12.000000Z",
+          "pivot": {
+            "growth_session_id": 1516,
+            "user_id": 123
+          }
+        },
+        {
+          "id": 114,
+          "name": "Guest",
+          "github_nickname": "",
+          "is_vehikl_member": false,
+          "avatar": "https:\/\/growth.vehikl.com\/images\/guest-avatar.webp",
+          "email_verified_at": null,
+          "created_at": "2021-08-05T17:56:47.000000Z",
+          "updated_at": "2021-08-05T17:56:47.000000Z",
+          "pivot": {
+            "growth_session_id": 1516,
+            "user_id": 114
+          }
+        }
+      ],
+      "comments": []
+    }
+  ],
+  "2021-08-26": [
+    {
+      "id": 1506,
+      "title": "Lets practice PHP",
+      "topic": "Lets do some exercisms (exercism.io) on PHP to get more used to the language.\n\nEveryone is welcome!",
+      "location": "< Login to see the location >",
+      "discord_channel_id": null,
+      "date": "2021-08-26",
+      "start_time": "10:30 am",
+      "end_time": "12:00 pm",
+      "is_public": true,
+      "created_at": "2021-08-19T13:51:48.000000Z",
+      "updated_at": "2021-08-19T13:51:48.000000Z",
+      "attendee_limit": 4,
+      "owner": {
+        "id": 1,
+        "name": "Felipe Flor",
+        "github_nickname": "FRFlor",
+        "is_vehikl_member": true,
+        "avatar": "https:\/\/avatars3.githubusercontent.com\/u\/22578748?v=4",
+        "email_verified_at": null,
+        "created_at": null,
+        "updated_at": null,
+        "pivot": {
+          "growth_session_id": 1506,
+          "user_id": 1
+        }
+      },
+      "attendees": [
+        {
+          "id": 133,
+          "name": "Guest",
+          "github_nickname": "",
+          "is_vehikl_member": false,
+          "avatar": "https:\/\/growth.vehikl.com\/images\/guest-avatar.webp",
+          "email_verified_at": null,
+          "created_at": "2021-08-19T15:59:35.000000Z",
+          "updated_at": "2021-08-19T15:59:35.000000Z",
+          "pivot": {
+            "growth_session_id": 1506,
+            "user_id": 133
+          }
+        },
+        {
+          "id": 131,
+          "name": "Guest",
+          "github_nickname": "",
+          "is_vehikl_member": false,
+          "avatar": "https:\/\/growth.vehikl.com\/images\/guest-avatar.webp",
+          "email_verified_at": null,
+          "created_at": "2021-08-18T20:41:39.000000Z",
+          "updated_at": "2021-08-18T20:41:39.000000Z",
+          "pivot": {
+            "growth_session_id": 1506,
+            "user_id": 131
+          }
+        },
+        {
+          "id": 134,
+          "name": "Guest",
+          "github_nickname": "",
+          "is_vehikl_member": false,
+          "avatar": "https:\/\/growth.vehikl.com\/images\/guest-avatar.webp",
+          "email_verified_at": null,
+          "created_at": "2021-08-19T20:29:03.000000Z",
+          "updated_at": "2021-08-19T20:29:03.000000Z",
+          "pivot": {
+            "growth_session_id": 1506,
+            "user_id": 134
+          }
+        },
+        {
+          "id": 129,
+          "name": "Guest",
+          "github_nickname": "",
+          "is_vehikl_member": false,
+          "avatar": "https:\/\/growth.vehikl.com\/images\/guest-avatar.webp",
+          "email_verified_at": null,
+          "created_at": "2021-08-17T21:13:49.000000Z",
+          "updated_at": "2021-08-17T21:13:49.000000Z",
+          "pivot": {
+            "growth_session_id": 1506,
+            "user_id": 129
+          }
+        }
+      ],
+      "comments": []
+    },
+    {
+      "id": 1530,
+      "title": "Lets make a Bulletin Board app in Laravel",
+      "topic": "Interested in practicing Laravel?\n\nLets try to make an app that will allow users to post notes that anyone accessing the app will be able to see. \n\nEveryone is welcome (no experience with Laravel needed)",
+      "location": "< Login to see the location >",
+      "discord_channel_id": null,
+      "date": "2021-08-26",
+      "start_time": "03:45 pm",
+      "end_time": "05:00 pm",
+      "is_public": true,
+      "created_at": "2021-08-23T13:51:00.000000Z",
+      "updated_at": "2021-08-23T13:53:07.000000Z",
+      "attendee_limit": 4,
+      "owner": {
+        "id": 1,
+        "name": "Felipe Flor",
+        "github_nickname": "FRFlor",
+        "is_vehikl_member": true,
+        "avatar": "https:\/\/avatars3.githubusercontent.com\/u\/22578748?v=4",
+        "email_verified_at": null,
+        "created_at": null,
+        "updated_at": null,
+        "pivot": {
+          "growth_session_id": 1530,
+          "user_id": 1
+        }
+      },
+      "attendees": [
+        {
+          "id": 137,
+          "name": "Guest",
+          "github_nickname": "",
+          "is_vehikl_member": false,
+          "avatar": "https:\/\/growth.vehikl.com\/images\/guest-avatar.webp",
+          "email_verified_at": null,
+          "created_at": "2021-08-21T02:40:52.000000Z",
+          "updated_at": "2021-08-21T02:40:52.000000Z",
+          "pivot": {
+            "growth_session_id": 1530,
+            "user_id": 137
+          }
+        },
+        {
+          "id": 127,
+          "name": "Guest",
+          "github_nickname": "",
+          "is_vehikl_member": false,
+          "avatar": "https:\/\/growth.vehikl.com\/images\/guest-avatar.webp",
+          "email_verified_at": null,
+          "created_at": "2021-08-17T17:26:19.000000Z",
+          "updated_at": "2021-08-17T17:26:19.000000Z",
+          "pivot": {
+            "growth_session_id": 1530,
+            "user_id": 127
+          }
+        },
+        {
+          "id": 141,
+          "name": "Guest",
+          "github_nickname": "",
+          "is_vehikl_member": false,
+          "avatar": "https:\/\/growth.vehikl.com\/images\/guest-avatar.webp",
+          "email_verified_at": null,
+          "created_at": "2021-08-23T20:08:07.000000Z",
+          "updated_at": "2021-08-23T20:08:07.000000Z",
+          "pivot": {
+            "growth_session_id": 1530,
+            "user_id": 141
+          }
+        },
+        {
+          "id": 139,
+          "name": "Guest",
+          "github_nickname": "",
+          "is_vehikl_member": false,
+          "avatar": "https:\/\/growth.vehikl.com\/images\/guest-avatar.webp",
+          "email_verified_at": null,
+          "created_at": "2021-08-21T16:21:47.000000Z",
+          "updated_at": "2021-08-21T16:21:47.000000Z",
+          "pivot": {
+            "growth_session_id": 1530,
+            "user_id": 139
+          }
+        }
+      ],
+      "comments": []
+    }
+  ],
+  "2021-08-27": []
+}
