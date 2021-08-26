@@ -1,5 +1,6 @@
 import {
   IonAvatar,
+  IonButton,
   IonCard,
   IonCardContent,
   IonCardHeader,
@@ -10,11 +11,17 @@ import {
   IonGrid,
   IonHeader,
   IonIcon,
+  IonImg,
   IonItem,
   IonLabel,
+  IonList,
   IonNote,
   IonPage,
   IonRow,
+  IonSegment,
+  IonSegmentButton,
+  IonText,
+  IonThumbnail,
   IonTitle,
   IonToolbar,
   useIonViewDidEnter,
@@ -24,19 +31,20 @@ import {
 } from '@ionic/react'
 import ExploreContainer from '../components/ExploreContainer'
 import { useQuery } from 'react-query'
-import './Tab1.css'
+import './Tab1.scss'
 import axios from 'axios'
 import { peopleOutline } from 'ionicons/icons'
 import { useState } from 'react'
-import * as dbDate from '../db.json'
+import api from '../api'
 
 const Tab1: React.FC = () => {
+  const [view, setView] = useState<string | undefined>('day')
   const [date, setDate] = useState(new Date())
-  const { status, isLoading, isError, data } = useQuery('week', async () => {
-    await axios.get('https://growth.vehikl.com/growth_sessions/week', {
-      params: { date: `${date.getFullYear()}-${date.getMonth()}-${date.getDate()}` }
+  const { data, isError, isLoading } = useQuery('week', () =>
+    axios.get('https://growth.vehikl.com/growth_sessions/week', {
+      params: { date: `${date.getFullYear()}-${date.getMonth() + 1}-${date.getDate()}` }
     })
-  })
+  )
 
   useIonViewWillEnter(() => {
     console.log('ionViewWillEnter event fired')
@@ -57,7 +65,9 @@ const Tab1: React.FC = () => {
   if (isLoading) return <span>Loading...</span>
   if (isError) return <span>Error</span>
 
-  console.log(data)
+  const sessions = Object.keys(data?.data).map((key) => [...data?.data[key]])
+
+  console.log(sessions)
 
   return (
     <IonPage>
@@ -72,74 +82,112 @@ const Tab1: React.FC = () => {
             <IonTitle size="large">Vehikl Growth Sessions</IonTitle>
           </IonToolbar>
         </IonHeader>
-        <IonGrid>
-          <IonRow>
-            <IonCol>
+        <IonSegment mode="md" onIonChange={(e) => setView(e.detail.value)} value={view}>
+          <IonSegmentButton value="day">
+            <IonLabel>Day</IonLabel>
+          </IonSegmentButton>
+          <IonSegmentButton value="week">
+            <IonLabel>Week</IonLabel>
+          </IonSegmentButton>
+        </IonSegment>
+        {view === 'day' && (
+          <IonCard className="ion-no-margin">
+            <IonList inset mode="ios">
+              <IonItem lines="none" className="ion-align-items-start ion-no-padding">
+                <IonThumbnail className="thumbnail" slot="start">
+                  <IonText color="light">
+                    <h3>11:30</h3>
+                  </IonText>
+                  <IonText color="light">AM</IonText>
+                </IonThumbnail>
+                <div className="ion-text-wrap">
+                  <IonGrid>
+                    <IonRow className="ion-margin-bottom">
+                      <IonText color="dark">
+                        <h1 className="ion-no-margin">
+                          Finishing off our multi-group dropdown menu
+                        </h1>
+                      </IonText>
+                    </IonRow>
+                    <IonRow className="ion-margin-bottom ion-align-items-center">
+                      <IonText className="ion-margin-end" color="medium">
+                        <h5 className="ion-no-margin">Darren Galway</h5>
+                      </IonText>
+                      <IonAvatar>
+                        <img src="https://avatars.githubusercontent.com/u/11524317?s=96&v=4" />
+                      </IonAvatar>
+                    </IonRow>
+                    <IonRow className="ion-margin-bottom">
+                      <IonChip color="dark">
+                        <IonLabel color="medium">Private</IonLabel>
+                      </IonChip>
+                      <IonChip color="dark">
+                        <IonLabel color="medium">1 hour</IonLabel>
+                      </IonChip>
+                    </IonRow>
+                    <IonRow className="ion-align-items-center">
+                      <IonCol>
+                        <IonIcon color="medium" icon={peopleOutline}></IonIcon>
+                        <IonText color="medium">4 spots remaining</IonText>
+                      </IonCol>
+                      <IonCol className="ion-align-self-end">
+                        <IonButton size="default" fill="clear" color="primary">
+                          Join
+                        </IonButton>
+                      </IonCol>
+                    </IonRow>
+                  </IonGrid>
+                </div>
+              </IonItem>
+            </IonList>
+          </IonCard>
+        )}
+        {view === 'week' && (
+          <IonGrid>
+            <IonRow>
+              <IonCol>
               Monday
-              <IonCard>
-                <IonCardHeader>
-                  <IonCardTitle>Finishing off our multi-group dropdown menu</IonCardTitle>
-                </IonCardHeader>
-                <IonCardContent>
-                  <IonItem lines="none">
-                    <p>Darren Galway</p>
-                    <IonAvatar>
-                      <img src="https://gravatar.com/avatar/dba6bae8c566f9d4041fb9cd9ada7741?d=identicon&f=y" />
-                    </IonAvatar>
-                  </IonItem>
-                  <IonItem lines="none">
-                    <IonChip>
-                      <IonLabel>Private</IonLabel>
-                    </IonChip>
-                    <IonChip>
-                      <IonLabel>1 hour</IonLabel>
-                    </IonChip>
-                  </IonItem>
-                  <IonItem lines="none">
-                    <IonLabel>
-                      <IonIcon icon={peopleOutline}></IonIcon>4 spots remaining
-                    </IonLabel>
-                    <IonNote slot="end" color="tertiary">
-                      Join
-                    </IonNote>
-                  </IonItem>
-                </IonCardContent>
-              </IonCard>
-            </IonCol>
-            <IonCol>Tuesday</IonCol>
-            <IonCol>Wednesday</IonCol>
-            <IonCol>Thursday</IonCol>
-            <IonCol>Friday</IonCol>
-          </IonRow>
-        </IonGrid>
+                <IonCard>
+                  <IonCardHeader>
+                    <IonCardTitle>Title</IonCardTitle>
+                  </IonCardHeader>
+                  <IonCardContent>
+                    <IonItem lines="none">
+                      <p>Darren Galway</p>
+                      <IonAvatar>
+                        <img src="https://gravatar.com/avatar/dba6bae8c566f9d4041fb9cd9ada7741?d=identicon&f=y" />
+                      </IonAvatar>
+                    </IonItem>
+                    <IonItem lines="none">
+                      <IonChip>
+                        <IonLabel>Private</IonLabel>
+                      </IonChip>
+                      <IonChip>
+                        <IonLabel>1 hour</IonLabel>
+                      </IonChip>
+                    </IonItem>
+                    <IonItem lines="none">
+                      <IonLabel>
+                        <IonIcon icon={peopleOutline}></IonIcon>4 spots remaining
+                      </IonLabel>
+                      <IonNote slot="end" color="tertiary">
+                        Join
+                      </IonNote>
+                    </IonItem>
+                  </IonCardContent>
+                </IonCard>
+              </IonCol>
+              <IonCol>Tuesday</IonCol>
+              <IonCol>Wednesday</IonCol>
+              <IonCol>Thursday</IonCol>
+              <IonCol>Friday</IonCol>
+            </IonRow>
+          </IonGrid>
+        )}
         {/* <ExploreContainer name="Vehikl Growth Sessions page" /> */}
       </IonContent>
     </IonPage>
   )
-}
-
-async function getSessions() {
-  return await axios.get('https://growth.vehikl.com/growth_sessions/week', {
-    params: { date: '2021-08-24' }
-  })
-}
-
-// data
-// attendee_limit: 4
-// date: "2021-08-27T04:00:00.000Z”
-// discord_channel_id: “546513731757146112"
-// end_time: "05:00 pm”
-// is_public: false
-// location: "Discord Channel: AbleTo”
-// start_time: "03:30 pm”
-// title: “test"
-// topic: "test"
-async function createSession(data: any) {
-  return await axios.post('https://growth.vehikl.com/growth_sessions', data)
-}
-
-async function removeSession(sessionId: number) {
-  return await axios.delete(`https://growth.vehikl.com/growth_sessions/${sessionId}`)
 }
 
 export default Tab1
