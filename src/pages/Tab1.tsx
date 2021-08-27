@@ -1,82 +1,247 @@
 import {
-  IonAvatar,
   IonButton,
-  IonCard,
-  IonCardContent,
-  IonCardHeader,
-  IonCardTitle,
-  IonChip,
+  IonButtons,
+  IonCheckbox,
   IonCol,
   IonContent,
+  IonDatetime,
+  IonFab,
+  IonFabButton,
+  IonFooter,
   IonGrid,
   IonHeader,
   IonIcon,
-  IonImg,
+  IonInput,
   IonItem,
+  IonItemDivider,
   IonLabel,
   IonList,
-  IonNote,
+  IonListHeader,
   IonPage,
   IonRow,
   IonSegment,
   IonSegmentButton,
+  IonSelect,
+  IonSelectOption,
   IonText,
-  IonThumbnail,
+  IonTextarea,
   IonTitle,
   IonToolbar,
-  useIonViewDidEnter,
-  useIonViewDidLeave,
-  useIonViewWillEnter,
-  useIonViewWillLeave
+  useIonModal
 } from '@ionic/react'
-import ExploreContainer from '../components/ExploreContainer'
-import { useQuery } from 'react-query'
-import './Tab1.scss'
 import axios from 'axios'
-import { peopleOutline } from 'ionicons/icons'
-import { useState } from 'react'
-import { DateTime } from "luxon";
+import { Fragment, useCallback, useState } from 'react'
+import { useMutation, useQuery } from 'react-query'
+import Card from '../components/Card/Card'
+import './Tab1.scss'
+import { DateTime } from 'luxon'
+import { addOutline, calendarNumber, calendarSharp, closeOutline } from 'ionicons/icons'
+import isEmpty from 'lodash/isEmpty'
+import api from '../api'
+import { Session } from 'inspector'
 
-const convertTimeDiff = (startTime: string, endTime: string) => {
-  let start = DateTime.fromISO(startTime) 
-  let end = DateTime.fromISO(endTime) 
-  // return end.diff(start, 'hours')
-  console.log(start, end);
-  return '{start, end}'
+const Body: React.FC<{ date: string; onDismiss: () => void }> = ({ date, onDismiss }) => {
+  const now = DateTime.now().toISO()
+  const [title, setTitle] = useState<string>()
+  const [topic, setTopic] = useState<string>()
+  const [limit, setLimit] = useState<number>(4)
+  const [isPublic, setIsPublic] = useState<boolean>(false)
+  const [isUnlimited, setIsUnlimited] = useState<boolean>(false)
+  const [location, setLocation] = useState<string>()
+
+  const [startTime, setStartTime] = useState<string>(
+    DateTime.fromISO(now).startOf('day').set({ hour: 15, minute: 30 }).toISO()
+  )
+  const [endTime, setEndTime] = useState<string>(
+    DateTime.fromISO(now).startOf('day').set({ hour: 17 }).toISO()
+  )
+
+  const handleTime = useCallback((key, value) => {
+    const method = key === 'start' ? setStartTime : setEndTime
+    method(value)
+  }, [])
+
+  // const mutation = useMutation(
+  //   async (data) => await axios.post('https://growth.vehikl.com/growth_sessions', data)
+  // )
+
+  const isInvalid = !title || !topic || !location
+
+  const handleSubmit = () => {
+    const data = {
+      attendee_limit: isUnlimited ? null : limit,
+      date: startTime,
+      end_time: DateTime.fromISO(endTime).toFormat('t'),
+      is_public: isPublic,
+      location,
+      start_time: DateTime.fromISO(startTime).toFormat('t'),
+      title,
+      topic
+    }
+
+    console.log(data)
+    // mutation.mutate(data)
+  }
+
+  return (
+    <>
+      <IonHeader>
+        <IonToolbar>
+          <IonTitle size="small">
+            <IonText color="dark">Add Growth Session</IonText>
+          </IonTitle>
+
+          <IonButtons slot="end">
+            <IonButton onClick={() => onDismiss()}>
+              <IonIcon size="small" icon={closeOutline}></IonIcon>
+            </IonButton>
+          </IonButtons>
+        </IonToolbar>
+      </IonHeader>
+      <IonContent color="light">
+        <IonList className="ion-margin-top">
+          <IonListHeader lines="full">
+            <IonLabel>Session Details</IonLabel>
+          </IonListHeader>
+          <IonItem lines="full">
+            <IonLabel position="stacked">Title</IonLabel>
+            <IonInput
+              required
+              autofocus
+              value={title}
+              onIonChange={(e) => setTitle(e.detail.value!)}
+            ></IonInput>
+          </IonItem>
+          <IonItem lines="full">
+            <IonLabel position="stacked">Topic</IonLabel>
+            <IonTextarea
+              required
+              rows={6}
+              cols={20}
+              placeholder="Enter topic here..."
+              value={topic}
+              onIonChange={(e) => setTopic(e.detail.value!)}
+            ></IonTextarea>
+          </IonItem>
+        </IonList>
+
+        <IonList className="ion-margin-top">
+          <IonListHeader lines="full">
+            <IonLabel>Date/Time</IonLabel>
+          </IonListHeader>
+          <IonItem lines="full">
+            <IonLabel>Date</IonLabel>
+            <IonDatetime slot="end" value={date} placeholder="Select Date"></IonDatetime>
+          </IonItem>
+          <IonItem lines="full">
+            <IonLabel>Start Time</IonLabel>
+            <IonDatetime
+              slot="end"
+              display-format="h:mm A"
+              picker-format="h:mm A"
+              value={startTime}
+              onIonChange={(e) => handleTime('start', e.detail.value!)}
+            ></IonDatetime>
+          </IonItem>
+          <IonItem lines="full">
+            <IonLabel>End Time</IonLabel>
+            <IonDatetime
+              slot="end"
+              display-format="h:mm A"
+              picker-format="h:mm A"
+              value={endTime}
+              onIonChange={(e) => handleTime('end', e.detail.value!)}
+            ></IonDatetime>
+          </IonItem>
+        </IonList>
+
+        <IonList className="ion-margin-top">
+          <IonListHeader lines="full">
+            <IonLabel>Meta</IonLabel>
+          </IonListHeader>
+          <IonItem>
+            <IonLabel>Location</IonLabel>
+            <IonSelect
+              interface="action-sheet"
+              placeholder="Select One"
+              onIonChange={(e) => setLocation(e.detail.value)}
+              value={location}
+            >
+              <IonSelectOption value="slack">Slack</IonSelectOption>
+              <IonSelectOption value="discord">Discord</IonSelectOption>
+              <IonSelectOption value="zoom">Zoom</IonSelectOption>
+              <IonSelectOption value="other">Other</IonSelectOption>
+            </IonSelect>
+          </IonItem>
+          <IonItem>
+            <IonLabel slot="start">Limit</IonLabel>
+            <IonInput
+              className="ion-text-end"
+              slot="end"
+              type="number"
+              value={limit}
+              min="0"
+              placeholder="Enter Number"
+              onIonChange={(e) => setLimit(parseInt(e.detail.value!, 10))}
+            ></IonInput>
+          </IonItem>
+          <IonItem>
+            <IonCheckbox
+              slot="start"
+              mode="ios"
+              checked={isPublic}
+              onIonChange={(e) => setIsPublic(e.detail.checked)}
+            />
+            <IonLabel>Is Public</IonLabel>
+          </IonItem>
+          <IonItem>
+            <IonCheckbox
+              slot="start"
+              mode="ios"
+              checked={isUnlimited}
+              onIonChange={(e) => setIsUnlimited(e.detail.checked)}
+            />
+            <IonLabel>No Limit</IonLabel>
+          </IonItem>
+        </IonList>
+      </IonContent>
+
+      <IonFooter>
+        <IonButton
+          type="submit"
+          disabled={isInvalid}
+          onClick={handleSubmit}
+          expand="full"
+          color="primary"
+        >
+          Create
+        </IonButton>
+      </IonFooter>
+    </>
+  )
 }
 
 const Tab1: React.FC = () => {
   const [view, setView] = useState<string | undefined>('day')
-  const [date, setDate] = useState(new Date())
+  // const [date] = useState(DateTime.fromISO(DateTime.now().toISODate()))
+  const [date] = useState(DateTime.now().minus({ days: 2 }).toISODate())
+
   const { data, isError, isLoading } = useQuery('week', () =>
     axios.get('https://growth.vehikl.com/growth_sessions/week', {
-      params: { date: `${date.getFullYear()}-${date.getMonth() + 1}-${date.getDate()}` }
+      params: { date }
     })
   )
 
-  useIonViewWillEnter(() => {
-    console.log('ionViewWillEnter event fired')
-  })
+  // const handleDismiss = () => {
+  //   dismiss()
+  // }
 
-  useIonViewDidEnter(() => {
-    console.log('ionViewDidEnter event fired')
-  })
-
-  useIonViewWillLeave(() => {
-    console.log('ionViewWillLeave event fired')
-  })
-
-  useIonViewDidLeave(() => {
-    console.log('ionViewDidLeave event fired')
-  })
+  const [present, dismiss] = useIonModal(Body, { date, onDismiss: () => { dismiss( )} })
 
   if (isLoading) return <span>Loading...</span>
   if (isError) return <span>Error</span>
 
   const sessions = Object.keys(data?.data).map((key) => [...data?.data[key]])
-
-  console.log(data?.data)
-  console.log(sessions, 'session')
 
   return (
     <IonPage>
@@ -91,127 +256,56 @@ const Tab1: React.FC = () => {
             <IonTitle size="large">Vehikl Growth Sessions</IonTitle>
           </IonToolbar>
         </IonHeader>
-        <IonSegment mode="md" onIonChange={(e) => setView(e.detail.value)} value={view}>
+        <IonSegment
+          className="ion-margin-top"
+          mode="md"
+          onIonChange={(e) => setView(e.detail.value)}
+          value={view}
+        >
           <IonSegmentButton value="day">
+            <IonIcon icon={calendarNumber} />
             <IonLabel>Day</IonLabel>
           </IonSegmentButton>
           <IonSegmentButton value="week">
+            <IonIcon icon={calendarSharp} />
             <IonLabel>Week</IonLabel>
           </IonSegmentButton>
         </IonSegment>
-        {view === 'day' && (
-          <>
-            {sessions.map((day, index) =>
-              day.map((session) => (
-                <>
-                  {session.date === date.toISOString().split('T')[0] && (
-                    <IonCard className="ion-no-margin">
-                      <IonList inset mode="ios">
-                        <IonItem lines="none" className="ion-align-items-start ion-no-padding">
-                          <IonThumbnail className="thumbnail" slot="start">
-                            <IonText color="light">
-                              <h3>{session.start_time.split(" ")[0]}</h3>
-                            </IonText>
-                            <IonText color="light">{session.start_time.split(" ")[1]}</IonText>
-                          </IonThumbnail>
-                          <div className="ion-text-wrap">
-                            <IonGrid>
-                              <IonRow className="ion-margin-bottom">
-                                <IonText color="dark">
-                                  <h1 className="ion-no-margin">
-                                    {session.title}
-                                  </h1>
-                                </IonText>
-                              </IonRow>
-                              <IonRow className="ion-margin-bottom ion-align-items-center">
-                                <IonText className="ion-margin-end" color="medium">
-                                  <h5 className="ion-no-margin">{session.owner.name}</h5>
-                                </IonText>
-                                <IonAvatar>
-                                  <img src={session.owner.avatar} alt={session.owner.name} />
-                                </IonAvatar>
-                              </IonRow>
-                              <IonRow className="ion-margin-bottom">
-                                <IonChip color="dark">
-                                  <IonLabel color="medium">
-                                    {session.is_public ? 'Public' : 'Private'}
-                                  </IonLabel>
-                                </IonChip>
-                                <IonChip color="dark">
-                                  <IonLabel color="medium">
-                                    {
-                                      convertTimeDiff(session.start_time, session.end_time)
-                                    }
-                                  </IonLabel>
-                                </IonChip>
-                              </IonRow>
-                              <IonRow className="ion-align-items-center">
-                                <IonCol>
-                                  <IonIcon color="medium" icon={peopleOutline}></IonIcon>
-                                  <IonText color="medium">
-                                    {session.attendee_limit - session.attendees.length} spots remaining
-                                  </IonText>
-                                </IonCol>
-                                <IonCol className="ion-text-end">
-                                  <IonButton size="default" fill="clear" color="primary">
-                                    Join
-                                  </IonButton>
-                                </IonCol>
-                              </IonRow>
-                            </IonGrid>
-                          </div>
-                        </IonItem>
-                      </IonList>
-                    </IonCard>
-                  )}
-                </>
-              ))
-            )}
-          </>
-        )}
+        {view === 'day' &&
+          sessions.map((day) =>
+            day.map(
+              (session) => session.date === date && <Card key={session.id} {...{ session, view }} />
+            )
+          )}
         {view === 'week' && (
           <IonGrid>
             <IonRow>
               {sessions.map((day, index) => (
-                <IonCol key={index}>
-                  {day.map((session) => (
-                    <IonCard key={session.id}>
-                      <IonCardHeader>
-                        <IonCardTitle>{session.title}</IonCardTitle>
-                      </IonCardHeader>
-                      <IonCardContent>
-                        <IonItem lines="none">
-                          <p>{session.owner.name}</p>
-                          <IonAvatar>
-                            <img src={session.owner.avatar} alt={session.owner.name} />
-                          </IonAvatar>
-                        </IonItem>
-                        <IonItem lines="none">
-                          <IonChip>
-                            <IonLabel>{session.is_public ? 'Public' : 'private'}</IonLabel>
-                          </IonChip>
-                          <IonChip>
-                            <IonLabel>1 hour</IonLabel>
-                          </IonChip>
-                        </IonItem>
-                        <IonItem lines="none">
-                          <IonLabel>
-                            <IonIcon icon={peopleOutline}></IonIcon>
-                            {session.attendee_limit - session.attendees.length}
-                          </IonLabel>
-                          <IonNote slot="end" color="tertiary">
-                            Join
-                          </IonNote>
-                        </IonItem>
-                      </IonCardContent>
-                    </IonCard>
+                <IonCol className="ion-no-padding" key={index}>
+                  {day.map((session, index) => (
+                    <Fragment key={session.id}>
+                      {index === 0 && (
+                        <IonText className="ion-text-center" color="dark">
+                          <h5>{DateTime.fromISO(session.date).toFormat('EEEE')}</h5>
+                        </IonText>
+                      )}
+                      <Card {...{ session, view }} />
+                    </Fragment>
                   ))}
                 </IonCol>
               ))}
             </IonRow>
           </IonGrid>
         )}
-        {/* <ExploreContainer name="Vehikl Growth Sessions page" /> */}
+        <IonFab edge vertical="top" horizontal="end" slot="fixed">
+          <IonFabButton
+            onClick={() => {
+              present({ cssClass: 'my-class' })
+            }}
+          >
+            <IonIcon icon={addOutline} />
+          </IonFabButton>
+        </IonFab>
       </IonContent>
     </IonPage>
   )
