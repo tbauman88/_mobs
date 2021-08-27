@@ -50,8 +50,11 @@ type CardProps = {
 }
 
 const convertTimeDiff = (startTime: string, endTime: string) => {
-  const diffInMinutes = DateTime.fromISO(startTime).diff(DateTime.fromISO(endTime), 'minutes')
-  return `${diffInMinutes.toObject().minutes} minutes`
+  const start = DateTime.fromISO(startTime)
+  const end = DateTime.fromISO(endTime)
+  const diffInMinutes = end.diff(start, 'minutes')
+  const { minutes } = diffInMinutes.toObject()
+  return `${minutes} minutes`
 }
 
 const Card: React.FC<CardProps> = ({
