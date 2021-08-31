@@ -9,7 +9,7 @@ import {
   IonTabs
 } from '@ionic/react'
 import { IonReactRouter } from '@ionic/react-router'
-import { ellipse, homeOutline, personCircleOutline } from 'ionicons/icons'
+import { home, informationCircle, personCircle } from 'ionicons/icons'
 import Tab1 from './pages/Tab1'
 import Tab2 from './pages/Tab2'
 import Tab3 from './pages/Tab3'
@@ -33,18 +33,21 @@ import '@ionic/react/css/display.css'
 /* Theme variables */
 import './theme/variables.css'
 
-import { QueryClientProvider, QueryClient } from 'react-query'
-const queryClient = new QueryClient()
+import SessionDetail from './pages/SessionDetail'
+import { useDarkMode } from './AppContext'
 
-const App: React.FC = () => (
-  <QueryClientProvider client={queryClient}>
-    <IonApp>
+const App: React.FC = () => {
+  const { darkMode } = useDarkMode()
+
+  return (
+    <IonApp className={`${darkMode ? 'dark-theme' : ''}`}>
       <IonReactRouter>
         <IonTabs>
           <IonRouterOutlet>
             <Route exact path="/tab1">
               <Tab1 />
             </Route>
+            <Route path="/tabs/sessions/:id" component={SessionDetail} />
             <Route exact path="/tab2">
               <Tab2 />
             </Route>
@@ -57,22 +60,22 @@ const App: React.FC = () => (
           </IonRouterOutlet>
           <IonTabBar slot="bottom">
             <IonTabButton tab="tab1" href="/tab1">
-              <IonIcon icon={homeOutline} />
+              <IonIcon icon={home} />
               <IonLabel>Sessions</IonLabel>
             </IonTabButton>
             <IonTabButton tab="tab2" href="/tab2">
-              <IonIcon icon={ellipse} />
+              <IonIcon icon={informationCircle} />
               <IonLabel>About</IonLabel>
             </IonTabButton>
             <IonTabButton tab="tab3" href="/tab3">
-              <IonIcon icon={personCircleOutline} />
+              <IonIcon icon={personCircle} />
               <IonLabel>Profile</IonLabel>
             </IonTabButton>
           </IonTabBar>
         </IonTabs>
       </IonReactRouter>
     </IonApp>
-  </QueryClientProvider>
-)
+  )
+}
 
 export default App

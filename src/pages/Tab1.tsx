@@ -16,45 +16,45 @@ import {
   IonToolbar,
   useIonModal
 } from '@ionic/react'
-import axios from 'axios'
 import { addOutline, calendarNumber, calendarSharp } from 'ionicons/icons'
 import { DateTime } from 'luxon'
 import { Fragment, useState } from 'react'
 import { useMutation, useQuery } from 'react-query'
-import { Session } from '../api'
+import api, { Session } from '../api'
 import Card from '../components/Card/Card'
+import LoadingError from '../components/Loading'
 import CreateSession from '../modals/CreateSession'
 import './Tab1.scss'
 
 const Tab1: React.FC = () => {
   const [view, setView] = useState<string | undefined>('day')
-  const [date] = useState(DateTime.fromISO(DateTime.now().toISODate()))
+  const [date] = useState(DateTime.now().toISODate())
 
-  const { data, isError, isLoading } = useQuery('week', () =>
-    axios.get('https://growth.vehikl.com/growth_sessions/week', {
-      params: { date }
-    })
-  )
+  const {
+    data: sessions = [],
+    isError,
+    isLoading
+  } = useQuery(['week', date], () => api.fetchSessions(date), {
+    select: (sessions) => Object.keys(sessions?.data).map((key) => [...sessions?.data[key]]),
+    retry: 1
+  })
 
-  const mutation = useMutation(
-    (data: Session) => axios.post('https://growth.vehikl.com/growth_sessions', data)
-  )
+  const { mutate } = useMutation(api.createSession)
 
   const [present, dismiss] = useIonModal(CreateSession, {
     date,
+    channels: () => api.fetchChannels,
     onDismiss: () => {
       dismiss()
     },
     onSubmit: (data: Session) => {
-      mutation.mutate(data)
+      mutate(data)
       dismiss()
-    } 
+    }
   })
 
-  if (isLoading) return <span>Loading...</span>
-  if (isError) return <span>Error</span>
-
-  const sessions = Object.keys(data?.data).map((key) => [...data?.data[key]])
+  if (isLoading) return <LoadingError state="loading" />
+  if (isError) return <LoadingError state="error" />
 
   return (
     <IonPage>
@@ -71,7 +71,6 @@ const Tab1: React.FC = () => {
         </IonHeader>
         <IonSegment
           className="ion-margin-top"
-          mode="md"
           onIonChange={(e) => setView(e.detail.value)}
           value={view}
         >
@@ -110,7 +109,8 @@ const Tab1: React.FC = () => {
             </IonRow>
           </IonGrid>
         )}
-        <IonFab edge vertical="top" horizontal="end" slot="fixed">
+      </IonContent>
+        <IonFab edge vertical="bottom" horizontal="end" slot="fixed">
           <IonFabButton
             onClick={() => {
               present()
@@ -119,7 +119,6 @@ const Tab1: React.FC = () => {
             <IonIcon icon={addOutline} />
           </IonFabButton>
         </IonFab>
-      </IonContent>
     </IonPage>
   )
 }

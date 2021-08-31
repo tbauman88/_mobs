@@ -1,0 +1,8 @@
+ion-thumbnail {
+  &:hover {
+    cursor: pointer;
+  }
+  img {
+    border-radius: 50%;
+  }
+}

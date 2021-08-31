@@ -22,13 +22,14 @@ import {
 import { closeOutline } from 'ionicons/icons'
 import { DateTime } from 'luxon'
 import { useCallback, useState } from 'react'
-import { Session } from '../api'
+import { Channel, Session } from '../api'
 
 const CreateSession: React.FC<{
   date: string
+  channels: Channel[]
   onDismiss: () => void
   onSubmit: (data: any) => Session
-}> = ({ date, onDismiss, onSubmit }) => {
+}> = ({ date, channels, onDismiss, onSubmit }) => {
   const now = DateTime.now().toISO()
   const [title, setTitle] = useState<string>()
   const [topic, setTopic] = useState<string>()
@@ -36,6 +37,7 @@ const CreateSession: React.FC<{
   const [isPublic, setIsPublic] = useState<boolean>(false)
   const [isUnlimited, setIsUnlimited] = useState<boolean>(false)
   const [location, setLocation] = useState<string>()
+  const [channel, setChannel] = useState<string>()
 
   const [startTime, setStartTime] = useState<string>(
     DateTime.fromISO(now).startOf('day').set({ hour: 15, minute: 30 }).toISO()
@@ -63,6 +65,8 @@ const CreateSession: React.FC<{
       topic
     })
   }
+
+  console.log(channels);
 
   return (
     <>
@@ -151,12 +155,31 @@ const CreateSession: React.FC<{
               value={location}
               mode="ios"
             >
-              <IonSelectOption value="slack">Slack</IonSelectOption>
               <IonSelectOption value="discord">Discord</IonSelectOption>
               <IonSelectOption value="zoom">Zoom</IonSelectOption>
+              <IonSelectOption value="meet">Meet</IonSelectOption>
+              <IonSelectOption value="slack">Slack</IonSelectOption>
               <IonSelectOption value="other">Other</IonSelectOption>
             </IonSelect>
           </IonItem>
+          {location === 'discord' && (
+            <IonItem>
+              <IonLabel>Location</IonLabel>
+              <IonSelect
+                interface="action-sheet"
+                placeholder="Select Channel"
+                onIonChange={(e) => setChannel(e.detail.value)}
+                value={channel}
+                mode="ios"
+              >
+                <IonSelectOption value="discord">Discord</IonSelectOption>
+                <IonSelectOption value="zoom">Zoom</IonSelectOption>
+                <IonSelectOption value="meet">Meet</IonSelectOption>
+                <IonSelectOption value="slack">Slack</IonSelectOption>
+                <IonSelectOption value="other">Other</IonSelectOption>
+              </IonSelect>
+            </IonItem>
+          )}
           <IonItem>
             <IonLabel slot="start">Limit</IonLabel>
             <IonInput

@@ -3,7 +3,6 @@ import {
   IonButton,
   IonCard,
   IonChip,
-  IonCol,
   IonGrid,
   IonIcon,
   IonItem,
@@ -15,61 +14,30 @@ import {
 } from '@ionic/react'
 import { lockClosedOutline, lockOpenOutline, peopleOutline, timeOutline } from 'ionicons/icons'
 import { DateTime } from 'luxon'
+import { useSessions } from '../../AppContext'
 import './Card.scss'
-
-interface Attendee {
-  avatar: string
-  created_at: string
-  email_verified_at: string
-  github_nickname: string
-  id: number
-  is_vehikl_member: boolean
-  name: string
-}
-
-interface SessionProps {
-  attendee_limit: number
-  attendees: Attendee[]
-  comments: []
-  created_at: string
-  date: string
-  discord_channel_id: string
-  end_time: string
-  id: number
-  is_public: boolean
-  location: string
-  owner: Attendee
-  start_time: string
-  title: string
-  topic: string
-}
+import { Session } from '../../api'
+import { convertTimeDiff } from '../../utils/helpers'
 
 type CardProps = {
-  session: SessionProps
+  session: Session
   view: string
 }
 
-const convertTimeDiff = (startTime: string, endTime: string) => {
-  const start = DateTime.fromISO(startTime)
-  const end = DateTime.fromISO(endTime)
-  const diffInMinutes = end.diff(start, 'minutes')
-  const { minutes } = diffInMinutes.toObject()
-  return `${minutes} minutes`
-}
-
-const Card: React.FC<CardProps> = ({
-  session: {
+const Card: React.FC<CardProps> = ({ session, view }) => {
+  const {
     attendee_limit,
     attendees,
     end_time,
+    id,
     is_public: isPublic,
     owner,
     start_time,
     title,
     topic
-  },
-  view
-}) => {
+  } = session
+  const { setSession } = useSessions()
+
   const [startTime, startMeridiem] = start_time.split(' ')
   const [endTime] = end_time.split(' ')
   const isDayView = view === 'day'
@@ -77,7 +45,13 @@ const Card: React.FC<CardProps> = ({
   return (
     <IonCard className={isDayView ? 'ion-no-margin ion-margin-bottom' : 'ion-margin-vertical'}>
       <IonList inset mode="ios">
-        <IonItem lines="none" className="ion-align-items-start ion-no-padding">
+        <IonItem
+          onClick={() => setSession(session)}
+          detail
+          routerLink={`/tabs/sessions/${id}`}
+          lines="none"
+          className="ion-align-items-start ion-no-padding"
+        >
           {isDayView ? (
             <IonThumbnail className="thumbnail" slot="start">
               <IonText color="light">
