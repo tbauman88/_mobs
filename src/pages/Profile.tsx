@@ -22,7 +22,7 @@ import { useState } from 'react'
 import { Attendee } from '../api'
 import { useDarkMode } from '../AppContext'
 import ExploreContainer from '../components/ExploreContainer'
-import './Tab3.scss'
+import './Profile.scss'
 
 const githubUser: Attendee = {
   avatar: 'https://avatars0.githubusercontent.com/u/25010884?v=4',
@@ -32,7 +32,7 @@ const githubUser: Attendee = {
   name: 'Tyler Bauman'
 }
 
-const Tab3: React.FC = () => {
+const Profile: React.FC = () => {
   const [user] = useState<Attendee>(githubUser)
   const [name, setName] = useState<string>()
   const { darkMode, setDarkMode } = useDarkMode()
@@ -113,4 +113,4 @@ const Tab3: React.FC = () => {
   )
 }
 
-export default Tab3
+export default Profile

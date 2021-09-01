@@ -46,7 +46,7 @@ const LoadingError: React.FC<LoadingErrorProps> = ({ state, message }) => {
                   <IonButton
                     fill="outline"
                     onClick={() => {
-                      history.push('/tab1')
+                      history.push('/home')
                     }}
                   >
                     Back to Sessions

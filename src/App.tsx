@@ -6,13 +6,17 @@ import {
   IonRouterOutlet,
   IonTabBar,
   IonTabButton,
-  IonTabs
+  IonTabs,
 } from '@ionic/react'
 import { IonReactRouter } from '@ionic/react-router'
 import { home, informationCircle, personCircle } from 'ionicons/icons'
-import Tab1 from './pages/Tab1'
-import Tab2 from './pages/Tab2'
-import Tab3 from './pages/Tab3'
+import Home from './pages/Home'
+import About from './pages/About'
+import Profile from './pages/Profile'
+import SessionDetail from './pages/SessionDetail'
+import { useDarkMode } from './AppContext'
+import { useMedia } from 'react-use'
+import { useEffect } from 'react'
 
 /* Core CSS required for Ionic components to work properly */
 import '@ionic/react/css/core.css'
@@ -33,41 +37,44 @@ import '@ionic/react/css/display.css'
 /* Theme variables */
 import './theme/variables.css'
 
-import SessionDetail from './pages/SessionDetail'
-import { useDarkMode } from './AppContext'
 
 const App: React.FC = () => {
-  const { darkMode } = useDarkMode()
+  const prefersDark = useMedia('(prefers-color-scheme: dark)')
+  const { darkMode, setDarkMode } = useDarkMode()
+
+  useEffect(() => {
+    setDarkMode(prefersDark)
+  }, [])
 
   return (
     <IonApp className={`${darkMode ? 'dark-theme' : ''}`}>
       <IonReactRouter>
         <IonTabs>
           <IonRouterOutlet>
-            <Route exact path="/tab1">
-              <Tab1 />
+            <Route exact path="/Home">
+              <Home />
             </Route>
             <Route path="/tabs/sessions/:id" component={SessionDetail} />
-            <Route exact path="/tab2">
-              <Tab2 />
+            <Route exact path="/about">
+              <About />
             </Route>
-            <Route path="/tab3">
-              <Tab3 />
+            <Route path="/profile">
+              <Profile />
             </Route>
             <Route exact path="/">
-              <Redirect to="/tab1" />
+              <Redirect to="/home" />
             </Route>
           </IonRouterOutlet>
           <IonTabBar slot="bottom">
-            <IonTabButton tab="tab1" href="/tab1">
+            <IonTabButton tab="Home" href="/home">
               <IonIcon icon={home} />
               <IonLabel>Sessions</IonLabel>
             </IonTabButton>
-            <IonTabButton tab="tab2" href="/tab2">
+            <IonTabButton tab="About" href="/about">
               <IonIcon icon={informationCircle} />
               <IonLabel>About</IonLabel>
             </IonTabButton>
-            <IonTabButton tab="tab3" href="/tab3">
+            <IonTabButton tab="Profile" href="/profile">
               <IonIcon icon={personCircle} />
               <IonLabel>Profile</IonLabel>
             </IonTabButton>

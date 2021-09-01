@@ -24,11 +24,11 @@ import api, { Session } from '../api'
 import Card from '../components/Card/Card'
 import LoadingError from '../components/Loading'
 import CreateSession from '../modals/CreateSession'
-import './Tab1.scss'
+import './Home.scss'
 
-const Tab1: React.FC = () => {
+const Home: React.FC = () => {
   const [view, setView] = useState<string | undefined>('day')
-  const [date] = useState(DateTime.now().toISODate())
+  const [date] = useState(DateTime.now().plus({ day: 1 }).toISODate())
 
   const {
     data: sessions = [],
@@ -123,4 +123,4 @@ const Tab1: React.FC = () => {
   )
 }
 
-export default Tab1
+export default Home
