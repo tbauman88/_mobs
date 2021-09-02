@@ -6,13 +6,14 @@ import {
   IonRouterOutlet,
   IonTabBar,
   IonTabButton,
-  IonTabs,
+  IonTabs
 } from '@ionic/react'
 import { IonReactRouter } from '@ionic/react-router'
 import { home, informationCircle, personCircle } from 'ionicons/icons'
 import Home from './pages/Home'
 import About from './pages/About'
 import Profile from './pages/Profile'
+import Login from './pages/Login'
 import SessionDetail from './pages/SessionDetail'
 import { useDarkMode } from './AppContext'
 import { useMedia } from 'react-use'
@@ -37,7 +38,6 @@ import '@ionic/react/css/display.css'
 /* Theme variables */
 import './theme/variables.css'
 
-
 const App: React.FC = () => {
   const prefersDark = useMedia('(prefers-color-scheme: dark)')
   const { darkMode, setDarkMode } = useDarkMode()
@@ -60,6 +60,9 @@ const App: React.FC = () => {
             </Route>
             <Route path="/profile">
               <Profile />
+            </Route>
+            <Route path="/login">
+              <Login />
             </Route>
             <Route exact path="/">
               <Redirect to="/home" />

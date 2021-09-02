@@ -86,9 +86,9 @@ const WeekView: React.FC<{ date: string }> = ({ date }) => {
   return (
     <IonGrid>
       <IonRow>
-        {dates.map((day, index) => (
+        {dates.map((day) => (
           <DayHeader
-            key={index}
+            key={day}
             day={DateTime.fromISO(day)}
             date={DateTime.fromISO(date)}
             onClick={(day: string) => {
@@ -102,7 +102,7 @@ const WeekView: React.FC<{ date: string }> = ({ date }) => {
         {sessions.map((day: Session[], index) => (
           <IonCol className="ion-no-padding" key={index}>
             {day.length > 0 ? (
-              day.map((session: Session, index) => (
+              day.map((session: Session) => (
                 <Card key={session.id} {...{ session, view: 'week' }} />
               ))
             ) : (
