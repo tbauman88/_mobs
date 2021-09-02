@@ -28,7 +28,7 @@ const Login: React.FC = () => {
         <IonSlides>
           <IonSlide>
             <div className="slide">
-              <img src="https://github.com/ionic-team/ionic-docs/blob/legacy/src/demos/api/slides/slide-1.png?raw=true" />
+              <img src="https://github.com/ionic-team/ionic-conference-app/blob/master/src/assets/img/ica-slidebox-img-1.png?raw=true" />
               <h2>Welcome</h2>
               <p>
                 <b>Vehikl Growth Sessions</b> allows users to share and schedule their sessions.
@@ -39,7 +39,7 @@ const Login: React.FC = () => {
           </IonSlide>
 
           <IonSlide>
-            <img src="https://github.com/ionic-team/ionic-docs/blob/legacy/src/demos/api/slides/slide-2.png?raw=true" />
+            <img src="https://github.com/ionic-team/ionic-conference-app/blob/master/src/assets/img/ica-slidebox-img-2.png?raw=true" />
             <h2>What is a Growth Session?</h2>
             <p>
               <b>Vehikl Growth Sessions</b> are an opportunity for each of us to sharpen our saw
@@ -54,7 +54,7 @@ const Login: React.FC = () => {
           </IonSlide>
 
           <IonSlide>
-            <img src="https://github.com/ionic-team/ionic-docs/blob/legacy/src/demos/api/slides/slide-3.png?raw=true" />
+            <img src="https://github.com/ionic-team/ionic-conference-app/blob/master/src/assets/img/ica-slidebox-img-3.png?raw=true" />
             <h2>What is Appflow?</h2>
             <p>
               We have set up hotkeys to switch views. If on a web browser, you can see the day view
@@ -63,7 +63,7 @@ const Login: React.FC = () => {
           </IonSlide>
 
           <IonSlide>
-            <img src="https://github.com/ionic-team/ionic-docs/blob/legacy/src/demos/api/slides/slide-4.png?raw=true" />
+            <img src="https://github.com/ionic-team/ionic-conference-app/blob/master/src/assets/img/ica-slidebox-img-4.png?raw=true" />
             <h2>Ready to Login?</h2>
             <div className="ion-margin-top">
               <IonButton
