@@ -18,6 +18,7 @@ import { addOutline, calendarNumber, calendarSharp } from 'ionicons/icons'
 import { DateTime } from 'luxon'
 import { useState } from 'react'
 import { useMutation } from 'react-query'
+import { useKey, useKeyPress } from 'react-use'
 import api, { Session } from '../api'
 import { useAuth } from '../AppContext'
 import DayView from '../components/DayView'
@@ -27,8 +28,10 @@ import './Home.scss'
 
 const Home: React.FC = () => {
   const [view, setView] = useState<string | undefined>('day')
-  const [date] = useState(DateTime.now().plus({ day: 1 }).toISODate())
+  const [date] = useState(DateTime.now().toISODate())
   const { loggedIn } = useAuth()
+  useKey('d', () => setView('day'))
+  useKey('w', () => setView('week'))
 
   const { mutate } = useMutation(api.createSession)
   const [present, dismiss] = useIonModal(CreateSession, {
@@ -74,15 +77,18 @@ const Home: React.FC = () => {
         {view === 'day' && <DayView />}
         {view === 'week' && <WeekView {...{ date }} />}
       </IonContent>
-      <IonFab edge vertical="bottom" horizontal="end" slot="fixed">
-        <IonFabButton
-          onClick={() => {
-            present()
-          }}
-        >
-          <IonIcon icon={addOutline} />
-        </IonFabButton>
-      </IonFab>
+      {view === 'day' && (
+        <IonFab edge vertical="bottom" horizontal="end" slot="fixed">
+          <IonFabButton
+            style={{ 'marginBottom': '40px' }}
+            onClick={() => {
+              present()
+            }}
+          >
+            <IonIcon icon={addOutline} />
+          </IonFabButton>
+        </IonFab>
+      )}
     </IonPage>
   )
 }

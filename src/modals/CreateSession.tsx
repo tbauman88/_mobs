@@ -66,8 +66,6 @@ const CreateSession: React.FC<{
     })
   }
 
-  console.log(channels);
-
   return (
     <>
       <IonHeader>

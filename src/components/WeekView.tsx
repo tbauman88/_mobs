@@ -6,30 +6,37 @@ import {
   IonIcon,
   IonItem,
   IonItemDivider,
-  IonLabel,
   IonList,
-  IonNote,
   IonRow,
-  IonText
+  IonText,
+  useIonModal
 } from '@ionic/react'
 import { addOutline } from 'ionicons/icons'
-import { useQuery } from 'react-query'
+import { DateTime } from 'luxon'
+import { useEffect, useState } from 'react'
+import { useMutation, useQuery } from 'react-query'
 import api, { Session } from '../api'
+import CreateSession from '../modals/CreateSession'
 import Card from './Card/Card'
 import LoadingError from './Loading'
 
-const WEEKDAY_NAMES = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday']
-
-const DayHeader: React.FC<{ day: string }> = ({ day }) => (
+const DayHeader: React.FC<{ date: DateTime; day: DateTime; onClick: any }> = ({
+  date,
+  day,
+  onClick
+}) => (
   <IonCol>
     <IonItemDivider className="ion-text-uppercase">
       <IonText color="dark">
-        <h5>{day}</h5>
+        <h5 className="ion-no-margin">{day.toFormat(`EEE`)}</h5>
+        <h5 className="ion-no-margin">{day.toFormat(`d`)}</h5>
       </IonText>
-      <IonButton slot="end" fill="clear">
-        <IonIcon slot="start" icon={addOutline}></IonIcon>
-        Create
-      </IonButton>
+      {day.toISODate() >= date.toISODate() && (
+        <IonButton slot="end" fill="clear" onClick={() => onClick(day)}>
+          <IonIcon slot="start" icon={addOutline}></IonIcon>
+          Create
+        </IonButton>
+      )}
     </IonItemDivider>
   </IonCol>
 )
@@ -47,25 +54,48 @@ const EmptyCard: React.FC = () => (
 )
 
 const WeekView: React.FC<{ date: string }> = ({ date }) => {
-  console.log(date)
-
-  const {
-    data: sessions = [],
-    isError,
-    isLoading
-  } = useQuery('week', () => api.fetchWeekSessions(date), {
-    select: (week) => Object.keys(week?.data).map((key) => [...week?.data[key]]),
+  const { data, isError, isLoading } = useQuery('week', () => api.fetchWeekSessions(date), {
     retry: 1
   })
+  const [dates, setDates] = useState<string[]>([])
+  const [viewDate, setViewDate] = useState<string>('')
+
+  const { mutate } = useMutation(api.createSession)
+
+  const [present, dismiss] = useIonModal(CreateSession, {
+    date: viewDate,
+    channels: () => api.fetchChannels,
+    onDismiss: () => {
+      dismiss()
+    },
+    onSubmit: (data: Session) => {
+      mutate(data)
+      dismiss()
+    }
+  })
+
+  useEffect(() => {
+    if (data?.data) setDates(Object.keys(data?.data))
+  }, [data])
 
   if (isLoading) return <LoadingError state="loading" />
   if (isError) return <LoadingError state="error" />
 
+  const sessions = Object.keys(data?.data).map((key) => [...data?.data[key]])
+
   return (
     <IonGrid>
       <IonRow>
-        {WEEKDAY_NAMES.map((day, index) => (
-          <DayHeader key={index} {...{ day }} />
+        {dates.map((day, index) => (
+          <DayHeader
+            key={index}
+            day={DateTime.fromISO(day)}
+            date={DateTime.fromISO(date)}
+            onClick={(day: string) => {
+              setViewDate(day)
+              present()
+            }}
+          />
         ))}
       </IonRow>
       <IonRow>
