@@ -31,8 +31,7 @@ const Login: React.FC = () => {
               <img src="https://github.com/ionic-team/ionic-docs/blob/legacy/src/demos/api/slides/slide-1.png?raw=true" />
               <h2>Welcome</h2>
               <p>
-                The <b>Vehikl growth sessions app</b> allows users to share and schedule their
-                sessions.
+                <b>Vehikl Growth Sessions</b> allows users to share and schedule their sessions.
                 <br />
                 To create or join private sessions you must be logged in.
               </p>
