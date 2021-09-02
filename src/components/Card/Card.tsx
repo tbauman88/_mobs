@@ -44,13 +44,12 @@ const Card: React.FC<CardProps> = ({ session, view }) => {
 
   return (
     <IonCard className={isDayView ? 'ion-no-margin ion-margin-bottom' : 'ion-margin-vertical'}>
-      <IonList inset mode="ios">
+      <IonList inset mode="ios" className="ion-no-margin">
         <IonItem
           onClick={() => setSession(session)}
-          detail
           routerLink={`/tabs/sessions/${id}`}
           lines="none"
-          className="ion-align-items-start ion-no-padding"
+          className="ion-align-items-start ion-no-padding card-item"
         >
           {isDayView ? (
             <IonThumbnail className="thumbnail" slot="start">

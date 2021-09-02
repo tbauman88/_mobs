@@ -7,8 +7,6 @@ import {
   IonItem,
   IonItemDivider,
   IonLabel,
-  IonList,
-  IonListHeader,
   IonPage,
   IonRow,
   IonText,
@@ -21,7 +19,6 @@ import { moonOutline } from 'ionicons/icons'
 import { useState } from 'react'
 import { Attendee } from '../api'
 import { useDarkMode } from '../AppContext'
-import ExploreContainer from '../components/ExploreContainer'
 import './Profile.scss'
 
 const githubUser: Attendee = {

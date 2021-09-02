@@ -35,6 +35,7 @@ export interface Session {
   start_time: string
   title: string
   topic: string
+  updated_at: string
 }
 
 export type Channel = {
@@ -53,7 +54,9 @@ type DeleteCommentProps = {
 }
 
 const api = {
-  fetchSessions: (date: string) =>
+  fetchSession: (sessionId: string) => axios.get(`https://growth.vehikl.com/growth_sessions/${sessionId}`),
+  fetchDaySession: axios.get('https://growth.vehikl.com/growth_sessions/day'),
+  fetchWeekSessions: (date: string) =>
     axios.get('https://growth.vehikl.com/growth_sessions/week', {
       params: { date }
     }),

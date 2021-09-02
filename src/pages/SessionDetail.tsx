@@ -31,7 +31,7 @@ import {
   timeOutline
 } from 'ionicons/icons'
 import { useState } from 'react'
-import { useMutation } from 'react-query'
+import { useMutation, useQuery } from 'react-query'
 import { RouteComponentProps } from 'react-router'
 import api from '../api'
 import { useSessions } from '../AppContext'
@@ -42,7 +42,7 @@ import './SessionDetail.scss'
 interface SessionDetailPageProps extends RouteComponentProps<{ id: string }> {}
 
 const SessionDetail: React.FC<SessionDetailPageProps> = ({ match }): JSX.Element => {
-  const { session } = useSessions()
+  const { session, setSession } = useSessions()
   const [showPopover, setShowPopover] = useState<boolean>(false)
   const [popoverEvent, setPopoverEvent] = useState<MouseEvent>()
   const [comment, setComment] = useState<string>('')
@@ -50,6 +50,13 @@ const SessionDetail: React.FC<SessionDetailPageProps> = ({ match }): JSX.Element
   const { mutate: createMutate } = useMutation(api.createComment)
   const { mutate: deleteMutate } = useMutation(api.deleteComment)
 
+  const { isError, isLoading } = useQuery('id', () => api.fetchSession(match.params.id), {
+    onSuccess: (day) => setSession(day?.data),
+    retry: 1
+  })
+
+  if (isLoading) return <LoadingError state="loading" />
+  if (isError) return <LoadingError state="error" />
   if (!session) return <LoadingError state="not-found" message="Session not found" />
 
   const {
@@ -87,7 +94,7 @@ const SessionDetail: React.FC<SessionDetailPageProps> = ({ match }): JSX.Element
       <IonHeader>
         <IonToolbar>
           <IonButtons slot="start">
-            <IonBackButton text="back" color="primary" />
+            <IonBackButton text="back" color="primary" defaultHref="/home" />
           </IonButtons>
           <IonButtons slot="end">
             <IonButton onClick={presentPopover} color="dark">
@@ -162,8 +169,11 @@ const SessionDetail: React.FC<SessionDetailPageProps> = ({ match }): JSX.Element
               </IonItem>
             ))}
         </IonList>
+
         <IonList>
-          <IonListHeader className="ion-text-uppercase">Comments</IonListHeader>
+          <IonListHeader className="ion-text-uppercase">
+            Comments ({comments.length ?? 0})
+          </IonListHeader>
           <IonItem lines="full">
             <IonTextarea
               required

@@ -20,7 +20,7 @@ const LoadingError: React.FC<LoadingErrorProps> = ({ state, message }) => {
   const history = useHistory()
 
   return (
-    <IonPage>
+    <IonPage id="loading">
       <IonContent fullscreen>
         <IonGrid>
           <IonRow className="ion-align-items-center">
