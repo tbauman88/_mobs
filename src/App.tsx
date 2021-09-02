@@ -16,7 +16,7 @@ import Profile from './pages/Profile'
 import Login from './pages/Login'
 import SessionDetail from './pages/SessionDetail'
 import { useDarkMode } from './AppContext'
-import { useMedia } from 'react-use'
+import { useMedia, useLocation } from 'react-use'
 import { useEffect } from 'react'
 
 /* Core CSS required for Ionic components to work properly */
@@ -41,6 +41,7 @@ import './theme/variables.css'
 const App: React.FC = () => {
   const prefersDark = useMedia('(prefers-color-scheme: dark)')
   const { darkMode, setDarkMode } = useDarkMode()
+  const location = useLocation()
 
   useEffect(() => {
     setDarkMode(prefersDark)
@@ -49,40 +50,45 @@ const App: React.FC = () => {
   return (
     <IonApp className={`${darkMode ? 'dark-theme' : ''}`}>
       <IonReactRouter>
-        <IonTabs>
+        {location.pathname?.includes('login') ? (
           <IonRouterOutlet>
-            <Route exact path="/Home">
-              <Home />
-            </Route>
-            <Route path="/tabs/sessions/:id" component={SessionDetail} />
-            <Route exact path="/about">
-              <About />
-            </Route>
-            <Route path="/profile">
-              <Profile />
-            </Route>
             <Route path="/login">
               <Login />
             </Route>
-            <Route exact path="/">
-              <Redirect to="/home" />
-            </Route>
           </IonRouterOutlet>
-          <IonTabBar slot="bottom">
-            <IonTabButton tab="Home" href="/home">
-              <IonIcon icon={home} />
-              <IonLabel>Sessions</IonLabel>
-            </IonTabButton>
-            <IonTabButton tab="About" href="/about">
-              <IonIcon icon={informationCircle} />
-              <IonLabel>About</IonLabel>
-            </IonTabButton>
-            <IonTabButton tab="Profile" href="/profile">
-              <IonIcon icon={personCircle} />
-              <IonLabel>Profile</IonLabel>
-            </IonTabButton>
-          </IonTabBar>
-        </IonTabs>
+        ) : (
+          <IonTabs>
+            <IonRouterOutlet>
+              <Route exact path="/home">
+                <Home />
+              </Route>
+              <Route path="/tabs/sessions/:id" component={SessionDetail} />
+              <Route exact path="/about">
+                <About />
+              </Route>
+              <Route path="/profile">
+                <Profile />
+              </Route>
+              <Route exact path="/">
+                <Redirect to="/home" />
+              </Route>
+            </IonRouterOutlet>
+            <IonTabBar slot="bottom">
+              <IonTabButton tab="Home" href="/home">
+                <IonIcon icon={home} />
+                <IonLabel>Sessions</IonLabel>
+              </IonTabButton>
+              <IonTabButton tab="About" href="/about">
+                <IonIcon icon={informationCircle} />
+                <IonLabel>About</IonLabel>
+              </IonTabButton>
+              <IonTabButton tab="Profile" href="/profile">
+                <IonIcon icon={personCircle} />
+                <IonLabel>Profile</IonLabel>
+              </IonTabButton>
+            </IonTabBar>
+          </IonTabs>
+        )}
       </IonReactRouter>
     </IonApp>
   )
