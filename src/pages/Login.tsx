@@ -15,6 +15,9 @@ import {
 import { arrowForward } from 'ionicons/icons'
 import { useHistory } from 'react-router'
 import './Login.scss'
+import Growth from '../img/growth.svg';
+import Delivery from '../img/delivery.svg';
+import Caring from '../img/caring.svg';
 
 const Login: React.FC = () => {
   const history = useHistory()
@@ -41,7 +44,7 @@ const Login: React.FC = () => {
             <IonGrid>
               <IonRow>
                 <IonCol pushMd="2" sizeMd="8" pushLg="3" sizeLg="6">
-                  <img src="https://github.com/ionic-team/ionic-conference-app/blob/master/src/assets/img/ica-slidebox-img-1.png?raw=true" />
+                  <img src={Delivery} />
                   <h2>Welcome</h2>
                   <p>
                     <b>Vehikl Growth Sessions</b> allows users to share and schedule their sessions.
@@ -56,7 +59,7 @@ const Login: React.FC = () => {
             <IonGrid>
               <IonRow>
                 <IonCol pushXl="4" sizeXl="4">
-                  <img src="https://github.com/ionic-team/ionic-conference-app/blob/master/src/assets/img/ica-slidebox-img-2.png?raw=true" />
+                  <img src={Growth} />
                   <h2>What is a Growth Session?</h2>
                   <p>
                     <b>Growth Sessions</b> are an opportunity for each of us to sharpen our saw (and
@@ -73,7 +76,7 @@ const Login: React.FC = () => {
             <IonGrid>
               <IonRow>
                 <IonCol pushXl="4" sizeXl="4">
-                  <img src="https://github.com/ionic-team/ionic-conference-app/blob/master/src/assets/img/ica-slidebox-img-3.png?raw=true" />
+                  <img src={Caring} />
                   <h2>Hotkeys?</h2>
                   <p>
                     If on a web browser we have set up the folowing hotkeys you can use;{' '}
