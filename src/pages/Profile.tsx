@@ -35,7 +35,7 @@ const Profile: React.FC = () => {
   const { darkMode, setDarkMode } = useDarkMode()
 
   return (
-    <IonPage>
+    <IonPage id="profile">
       <IonHeader>
         <IonToolbar>
           <IonTitle>You</IonTitle>

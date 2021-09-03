@@ -12,7 +12,15 @@ import {
   IonText,
   IonThumbnail
 } from '@ionic/react'
-import { lockClosedOutline, lockOpenOutline, peopleOutline, timeOutline } from 'ionicons/icons'
+import {
+  ellipsisVertical,
+  ellipsisVerticalCircle,
+  ellipsisVerticalCircleOutline,
+  lockClosedOutline,
+  lockOpenOutline,
+  peopleOutline,
+  timeOutline
+} from 'ionicons/icons'
 import { DateTime } from 'luxon'
 import { useSessions } from '../../AppContext'
 import './Card.scss'
@@ -46,6 +54,7 @@ const Card: React.FC<CardProps> = ({ session, view }) => {
     <IonCard className={isDayView ? 'ion-no-margin ion-margin-bottom' : 'ion-margin-vertical'}>
       <IonList inset mode="ios" className="ion-no-margin">
         <IonItem
+          detail={false}
           onClick={() => setSession(session)}
           routerLink={`/tabs/sessions/${id}`}
           lines="none"
@@ -63,15 +72,16 @@ const Card: React.FC<CardProps> = ({ session, view }) => {
           ) : null}
           <div className="ion-text-wrap">
             <IonGrid>
-              <IonRow className="ion-margin-bottom">
-                <IonText color="dark">
-                  {isDayView ? (
-                    <h1 className="ion-no-margin">{title}</h1>
-                  ) : (
-                    <h3 className="ion-no-margin">{title}</h3>
-                  )}
-                </IonText>
-              </IonRow>
+              <IonText color="dark">
+                {isDayView ? (
+                  <h1 className="ion-no-margin ion-margin-bottom">{title}</h1>
+                ) : (
+                  <>
+                    <h3 className="ion-no-margin ion-margin-bottom">{title}</h3>
+                    <IonIcon size="small" icon={ellipsisVertical} />
+                  </>
+                )}
+              </IonText>
               <IonRow className="ion-margin-bottom ion-align-items-center">
                 <IonChip outline={false} color="light">
                   <IonAvatar>

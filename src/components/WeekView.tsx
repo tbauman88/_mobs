@@ -18,6 +18,7 @@ import { useMutation, useQuery } from 'react-query'
 import api, { Session } from '../api'
 import CreateSession from '../modals/CreateSession'
 import Card from './Card/Card'
+import WeekCard from './Card/WeekCard'
 import LoadingError from './Loading'
 
 const DayHeader: React.FC<{ date: DateTime; day: DateTime; onClick: any }> = ({
@@ -103,7 +104,7 @@ const WeekView: React.FC<{ date: string }> = ({ date }) => {
           <IonCol className="ion-no-padding" key={index}>
             {day.length > 0 ? (
               day.map((session: Session) => (
-                <Card key={session.id} {...{ session, view: 'week' }} />
+                <WeekCard key={session.id} {...{ session}} />
               ))
             ) : (
               <EmptyCard />

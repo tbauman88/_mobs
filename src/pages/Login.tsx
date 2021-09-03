@@ -48,8 +48,8 @@ const Login: React.FC = () => {
                   <img src="https://github.com/ionic-team/ionic-conference-app/blob/master/src/assets/img/ica-slidebox-img-2.png?raw=true" />
                   <h2>What is a Growth Session?</h2>
                   <p>
-                    <b>Growth Sessions</b> are an opportunity for each of us to sharpen our
-                    saw (and discover brand new innovations like the chainsaw!). It is a space for
+                    <b>Growth Sessions</b> are an opportunity for each of us to sharpen our saw (and
+                    discover brand new innovations like the chainsaw!). It is a space for
                     experimenting, getting help when we are stuck, learning from others and sharing
                     the benefits of what we have discovered in our travels.
                   </p>
@@ -65,8 +65,7 @@ const Login: React.FC = () => {
                   <img src="https://github.com/ionic-team/ionic-conference-app/blob/master/src/assets/img/ica-slidebox-img-3.png?raw=true" />
                   <h2>Hotkeys?</h2>
                   <p>
-                  If on a web browser we have set up the folowing hotkeys you can use;
-                    <b>d = day</b> and <b>w = week</b> to switch between the views.
+                    If on a web browser we have set up the folowing hotkeys you can use; <b>d = day</b> and <b>w = week</b> to switch between the views.
                   </p>
                 </IonCol>
               </IonRow>

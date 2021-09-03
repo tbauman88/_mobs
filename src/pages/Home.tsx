@@ -64,7 +64,7 @@ const Home: React.FC = () => {
             <IonTitle size="large">Vehikl Growth Sessions</IonTitle>
           </IonToolbar>
         </IonHeader>
-        <IonSegment onIonChange={(e) => setView(e.detail.value)} value={view}>
+        <IonSegment mode="md" onIonChange={(e) => setView(e.detail.value)} value={view}>
           <IonSegmentButton value="day">
             <IonIcon icon={calendarNumber} />
             <IonLabel>Day</IonLabel>
