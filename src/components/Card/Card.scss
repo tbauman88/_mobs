@@ -3,11 +3,11 @@ ion-button {
   --color-hover: white;
   --background: transparent;
 
-  &:hover{
+  &:hover {
     --background: var(--ion-color-primary);
-}
+  }
 
-  &.ion-focused{
+  &.ion-focused {
     --background: var(--ion-color-primary);
   }
 }
@@ -26,7 +26,7 @@ ion-button {
 
   ion-text {
     :first-of-type {
-      margin: 0
+      margin: 0;
     }
   }
 }
@@ -35,13 +35,8 @@ ion-button {
   width: 100%;
 }
 
-.card-item {
+ion-item.card {
   --background-hover: var(--ion-color-light);
-}
-
-.week-card {
-  ion-item {
-    --inner-padding-end: 0;
-    --inner-padding-start: 0;
-  }
+  --inner-padding-end: 0;
+  --inner-padding-start: 0;
 }

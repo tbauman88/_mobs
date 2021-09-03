@@ -1,19 +1,16 @@
 import {
   IonButton,
-  IonCard,
-  IonCardContent,
-  IonCardHeader,
-  IonCardSubtitle,
-  IonCardTitle,
+  IonButtons,
   IonCol,
   IonContent,
   IonGrid,
+  IonHeader,
   IonIcon,
   IonPage,
   IonRow,
   IonSlide,
   IonSlides,
-  IonText
+  IonToolbar
 } from '@ionic/react'
 import { arrowForward } from 'ionicons/icons'
 import { useHistory } from 'react-router'
@@ -24,6 +21,20 @@ const Login: React.FC = () => {
 
   return (
     <IonPage id="login-page">
+      <IonHeader no-border>
+        <IonToolbar color="light">
+          <IonButtons slot="end" className="ion-text-uppercase">
+            <IonButton
+              fill="clear"
+              color="primary"
+              onClick={() => history.push('/home', { direction: 'none' })}
+            >
+              Skip
+            </IonButton>
+          </IonButtons>
+        </IonToolbar>
+      </IonHeader>
+
       <IonContent color="light">
         <IonSlides>
           <IonSlide>
@@ -65,7 +76,8 @@ const Login: React.FC = () => {
                   <img src="https://github.com/ionic-team/ionic-conference-app/blob/master/src/assets/img/ica-slidebox-img-3.png?raw=true" />
                   <h2>Hotkeys?</h2>
                   <p>
-                    If on a web browser we have set up the folowing hotkeys you can use; <b>d = day</b> and <b>w = week</b> to switch between the views.
+                    If on a web browser we have set up the folowing hotkeys you can use;{' '}
+                    <b>d = day</b> and <b>w = week</b> to switch between the views.
                   </p>
                 </IonCol>
               </IonRow>

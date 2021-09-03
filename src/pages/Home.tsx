@@ -18,7 +18,7 @@ import { addOutline, calendarNumber, calendarSharp } from 'ionicons/icons'
 import { DateTime } from 'luxon'
 import { useState } from 'react'
 import { useMutation } from 'react-query'
-import { useKey, useKeyPress } from 'react-use'
+import { useKey } from 'react-use'
 import api, { Session } from '../api'
 import { useAuth } from '../AppContext'
 import DayView from '../components/DayView'
@@ -80,7 +80,7 @@ const Home: React.FC = () => {
       {view === 'day' && (
         <IonFab edge vertical="bottom" horizontal="end" slot="fixed">
           <IonFabButton
-            style={{ 'marginBottom': '40px' }}
+            style={{ marginBottom: '40px' }}
             onClick={() => {
               present()
             }}

@@ -27,7 +27,7 @@ const DayHeader: React.FC<{ date: DateTime; day: DateTime; onClick: any }> = ({
   onClick
 }) => (
   <IonCol>
-    <IonItemDivider className="ion-text-uppercase">
+    <IonItemDivider className="ion-text-uppercase ion-padding-bottom">
       <IonText color="dark">
         <h5 className="ion-no-margin">{day.toFormat(`EEE`)}</h5>
         <h5 className="ion-no-margin">{day.toFormat(`d`)}</h5>
@@ -104,7 +104,7 @@ const WeekView: React.FC<{ date: string }> = ({ date }) => {
           <IonCol className="ion-no-padding" key={index}>
             {day.length > 0 ? (
               day.map((session: Session) => (
-                <WeekCard key={session.id} {...{ session}} />
+                <Card key={session.id} {...{ session, view: 'week' }} />
               ))
             ) : (
               <EmptyCard />
