@@ -87,9 +87,10 @@ const Card: React.FC<{ session: Session; view: string }> = ({ session, view }) =
   return (
     <>
       <IonCard
+        id="card"
         className={isDayView ? 'ion-no-margin ion-margin-bottom' : 'ion-margin-vertical'}
-        // onClick={() => setSession(session)}
-        // routerLink={`/tabs/sessions/${id}`}
+        onClick={() => setSession(session)}
+        routerLink={`/tabs/sessions/${id}`}
       >
         <IonCardHeader style={{ paddingRight: isTodayOrFutrue && '4px' }}>
           <IonItem

@@ -16,7 +16,6 @@ import {
   IonText,
   IonTextarea,
   IonThumbnail,
-  IonTitle,
   IonToolbar
 } from '@ionic/react'
 import {
@@ -61,6 +60,7 @@ const SessionDetail: React.FC<SessionDetailPageProps> = ({ match }): JSX.Element
 
   const {
     attendees,
+    attendee_limit,
     comments,
     end_time,
     id,
@@ -73,6 +73,7 @@ const SessionDetail: React.FC<SessionDetailPageProps> = ({ match }): JSX.Element
   } = session
   const [startTime] = start_time.split(' ')
   const [endTime] = end_time.split(' ')
+  const isAvailable: boolean = attendees.length !== attendee_limit
 
   const presentPopover = (e: React.MouseEvent) => {
     setPopoverEvent(e.nativeEvent)
@@ -94,7 +95,7 @@ const SessionDetail: React.FC<SessionDetailPageProps> = ({ match }): JSX.Element
       <IonHeader>
         <IonToolbar>
           <IonButtons slot="start">
-            <IonBackButton text="back" color="primary" defaultHref="/home" />
+            <IonBackButton text="Back" color="primary" defaultHref="/home" />
           </IonButtons>
           <IonButtons slot="end">
             <IonButton onClick={presentPopover} color="dark">
@@ -105,25 +106,21 @@ const SessionDetail: React.FC<SessionDetailPageProps> = ({ match }): JSX.Element
       </IonHeader>
 
       <IonContent fullscreen>
-        <IonHeader collapse="condense">
-          <IonToolbar>
-            <IonTitle>{title}</IonTitle>
-          </IonToolbar>
-        </IonHeader>
         <div className="ion-padding">
           <IonText color="dark">
             <h1>{title}</h1>
           </IonText>
+
           <IonChip outline={false} color="light">
             <IonAvatar>
               <img src={owner.avatar} alt={owner.name} />
             </IonAvatar>
             <IonText color="primary">
-              <span key={owner.id}>{owner.name}</span>
+              <span>{owner.name}</span>
             </IonText>
           </IonChip>
 
-          <div className="ion-padding-vertical">
+          <div className="ion-padding-top">
             <IonChip color="dark">
               <IonIcon size="small" icon={isPublic ? lockOpenOutline : lockClosedOutline} />
               <IonLabel color="medium">{isPublic ? 'Public' : 'Private'}</IonLabel>
@@ -136,14 +133,23 @@ const SessionDetail: React.FC<SessionDetailPageProps> = ({ match }): JSX.Element
 
           <p>{topic}</p>
           <IonText color="medium">
-            {start_time} &ndash; {end_time}
-            <br />
-            {location}
+            <p>
+              {start_time} &ndash; {end_time}
+              <br />
+              {location}
+            </p>
           </IonText>
+        {isAvailable && (
+          <IonButton color="primary" expand="block" shape="round">
+            Join
+          </IonButton>
+        )}
         </div>
-        <IonList className="ion-margin-vertical">
-          <IonListHeader lines="full">
-            <IonToolbar className="ion-text-uppercase">
+
+
+        <IonList className="ion-margin-bottom ion-padding-bottom">
+          <IonListHeader lines="full" mode="md">
+            <IonToolbar mode="md" className="ion-text-uppercase">
               Attendees
               <IonButtons slot="end">
                 <IonButton onClick={() => setShowAttendees(!showAttendees)} color="dark">
@@ -171,8 +177,10 @@ const SessionDetail: React.FC<SessionDetailPageProps> = ({ match }): JSX.Element
         </IonList>
 
         <IonList>
-          <IonListHeader className="ion-text-uppercase">
-            Comments ({comments.length ?? 0})
+          <IonListHeader lines="full" mode="md">
+            <IonToolbar mode="md" className="ion-text-uppercase">
+              Comments ({comments.length ?? 0})
+            </IonToolbar>
           </IonListHeader>
           <IonItem lines="full">
             <IonTextarea
