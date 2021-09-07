@@ -9,9 +9,8 @@ import {
   IonTabs
 } from '@ionic/react'
 import { IonReactRouter } from '@ionic/react-router'
-import { home, informationCircle, personCircle } from 'ionicons/icons'
+import { home, personCircle } from 'ionicons/icons'
 import Home from './pages/Home'
-import About from './pages/About'
 import Profile from './pages/Profile'
 import Login from './pages/Login'
 import SessionDetail from './pages/SessionDetail'
@@ -63,9 +62,6 @@ const App: React.FC = () => {
                 <Home />
               </Route>
               <Route path="/tabs/sessions/:id" component={SessionDetail} />
-              <Route exact path="/about">
-                <About />
-              </Route>
               <Route path="/profile">
                 <Profile />
               </Route>
@@ -77,10 +73,6 @@ const App: React.FC = () => {
               <IonTabButton tab="Home" href="/home">
                 <IonIcon icon={home} />
                 <IonLabel>Sessions</IonLabel>
-              </IonTabButton>
-              <IonTabButton tab="About" href="/about">
-                <IonIcon icon={informationCircle} />
-                <IonLabel>About</IonLabel>
               </IonTabButton>
               <IonTabButton tab="Profile" href="/profile">
                 <IonIcon icon={personCircle} />
