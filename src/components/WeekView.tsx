@@ -43,14 +43,10 @@ const DayHeader: React.FC<{ date: DateTime; day: DateTime; onClick: any }> = ({
 )
 
 const EmptyCard: React.FC = () => (
-  <IonCard className="ion-margin-vertical">
-    <IonList inset mode="ios" className="ion-no-margin">
-      <IonItem lines="none" className="ion-align-items-start ion-no-padding card-item">
-        <IonText color="dark">
-          <h3 className="ion-no-margin">Empty Card</h3>
-        </IonText>
-      </IonItem>
-    </IonList>
+  <IonCard className="ion-margin-vertical ion-padding ion-text-center">
+    <IonText color="dark">
+      <h3 className="ion-no-margin">No Scheduled Growth Sessions</h3>
+    </IonText>
   </IonCard>
 )
 
