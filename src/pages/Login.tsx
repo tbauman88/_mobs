@@ -15,9 +15,9 @@ import {
 import { arrowForward } from 'ionicons/icons'
 import { useHistory } from 'react-router'
 import './Login.scss'
-import Growth from '../img/growth.svg';
-import Delivery from '../img/delivery.svg';
-import Caring from '../img/caring.svg';
+import Growth from '../img/growth.svg'
+import Delivery from '../img/delivery.svg'
+import Caring from '../img/caring.svg'
 
 const Login: React.FC = () => {
   const history = useHistory()
@@ -59,7 +59,7 @@ const Login: React.FC = () => {
             <IonGrid>
               <IonRow>
                 <IonCol pushXl="4" sizeXl="4">
-                  <img src={Growth} />
+                  <img className="growth" src={Growth} />
                   <h2>What is a Growth Session?</h2>
                   <p>
                     <b>Growth Sessions</b> are an opportunity for each of us to sharpen our saw (and
