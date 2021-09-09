@@ -106,46 +106,47 @@ const SessionDetail: React.FC<SessionDetailPageProps> = ({ match }): JSX.Element
       </IonHeader>
 
       <IonContent fullscreen>
-        <div className="ion-padding">
-          <IonText color="dark">
-            <h1>{title}</h1>
-          </IonText>
-
-          <IonChip outline={false} color="light">
-            <IonAvatar>
-              <img src={owner.avatar} alt={owner.name} />
-            </IonAvatar>
-            <IonText color="primary">
-              <span>{owner.name}</span>
+        <IonItem className="ion-margin-bottom ion-no-padding">
+          <div className="ion-padding">
+            <IonText color="dark">
+              <h1>{title}</h1>
             </IonText>
-          </IonChip>
 
-          <div className="ion-padding-top">
-            <IonChip color="dark">
-              <IonIcon size="small" icon={isPublic ? lockOpenOutline : lockClosedOutline} />
-              <IonLabel color="medium">{isPublic ? 'Public' : 'Private'}</IonLabel>
+            <IonChip outline={false} color="light">
+              <IonAvatar>
+                <img src={owner.avatar} alt={owner.name} />
+              </IonAvatar>
+              <IonText color="primary">
+                <span>{owner.name}</span>
+              </IonText>
             </IonChip>
-            <IonChip color="dark">
-              <IonIcon size="small" icon={timeOutline} />
-              <IonLabel color="medium">{convertTimeDiff(startTime, endTime)}</IonLabel>
-            </IonChip>
+
+            <div className="ion-padding-top">
+              <IonChip color="dark">
+                <IonIcon size="small" icon={isPublic ? lockOpenOutline : lockClosedOutline} />
+                <IonLabel color="medium">{isPublic ? 'Public' : 'Private'}</IonLabel>
+              </IonChip>
+              <IonChip color="dark">
+                <IonIcon size="small" icon={timeOutline} />
+                <IonLabel color="medium">{convertTimeDiff(startTime, endTime)}</IonLabel>
+              </IonChip>
+            </div>
+
+            <p>{topic}</p>
+            <IonText color="medium">
+              <p>
+                {start_time} &ndash; {end_time}
+                <br />
+                {location}
+              </p>
+            </IonText>
+            {isAvailable && (
+              <IonButton color="primary" expand="block" shape="round">
+                Join
+              </IonButton>
+            )}
           </div>
-
-          <p>{topic}</p>
-          <IonText color="medium">
-            <p>
-              {start_time} &ndash; {end_time}
-              <br />
-              {location}
-            </p>
-          </IonText>
-        {isAvailable && (
-          <IonButton color="primary" expand="block" shape="round">
-            Join
-          </IonButton>
-        )}
-        </div>
-
+        </IonItem>
 
         <IonList className="ion-margin-bottom ion-padding-bottom">
           <IonListHeader lines="full" mode="md">
@@ -162,18 +163,22 @@ const SessionDetail: React.FC<SessionDetailPageProps> = ({ match }): JSX.Element
             </IonToolbar>
           </IonListHeader>
           {showAttendees &&
-            attendees.map(({ id, avatar, name, github_nickname: nickname }) => (
-              <IonItem
-                key={id}
-                href={nickname ? `https://www.github.com/${nickname}` : undefined}
-                target="_blank"
-              >
-                <IonAvatar slot="start">
-                  <img alt={name} src={avatar} />
-                </IonAvatar>
-                <IonLabel color="primary">{name}</IonLabel>
-              </IonItem>
-            ))}
+            attendees
+              .sort((p) => (p.github_nickname ? -1 : 1))
+              .map(({ id, avatar, name, github_nickname: nickname }) => (
+                <IonItem
+                  key={id}
+                  href={nickname ? `https://www.github.com/${nickname}` : undefined}
+                  target="_blank"
+                  type="button"
+                  detail={nickname ? true : false}
+                >
+                  <IonAvatar slot="start">
+                    <img alt={name} src={avatar} />
+                  </IonAvatar>
+                  <IonLabel color={nickname ? 'primary' : 'medium'}>{name}</IonLabel>
+                </IonItem>
+              ))}
         </IonList>
 
         <IonList>
