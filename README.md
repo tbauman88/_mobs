@@ -23,12 +23,8 @@ npm run start
 ## iOS Preview
 
 ### Light vs Dark Mode
-<img width="258px" src="./assets/onboarding-light.png">
-<img width="250px" src="./assets/onboarding-dark.png">
+![onboarding-light](./assets/onboarding-light.png "Onboarding Light") ![onboarding-dark](./assets/onboarding-dark.png "Onboarding Dark")
 
-### Sessions
-<img width="255px" src="./assets/sessions.png">
-<img width="250px" src="./assets/session-detail.png">
-
-### Profile
-<img width="250px" src="./assets/profile.png">
+### Sessions, Session Detail and Profile Pages
+![sessions](./assets/sessions.png "Sessions") ![session-detail](./assets/session-detail.png "Session Detail")
+![profile](./assets/profile.png "Profile")
