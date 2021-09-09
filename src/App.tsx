@@ -58,7 +58,7 @@ const App: React.FC = () => {
         ) : (
           <IonTabs>
             <IonRouterOutlet>
-              <Route exact path="/home">
+              <Route path="/home">
                 <Home />
               </Route>
               <Route path="/tabs/sessions/:id" component={SessionDetail} />
@@ -66,7 +66,7 @@ const App: React.FC = () => {
                 <Profile />
               </Route>
               <Route exact path="/">
-                <Redirect to="/home" />
+                <Redirect to="/login" />
               </Route>
             </IonRouterOutlet>
             <IonTabBar slot="bottom">

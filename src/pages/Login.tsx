@@ -14,10 +14,11 @@ import {
 } from '@ionic/react'
 import { arrowForward } from 'ionicons/icons'
 import { useHistory } from 'react-router'
-import './Login.scss'
-import Growth from '../img/growth.svg'
-import Delivery from '../img/delivery.svg'
+import LoginButton from '../components/LoginButton'
 import Caring from '../img/caring.svg'
+import Delivery from '../img/delivery.svg'
+import Growth from '../img/growth.svg'
+import './Login.scss'
 
 const Login: React.FC = () => {
   const history = useHistory()
@@ -94,15 +95,7 @@ const Login: React.FC = () => {
                   <img src="https://github.com/ionic-team/ionic-conference-app/blob/master/src/assets/img/ica-slidebox-img-4.png?raw=true" />
                   <h2>Ready to Login?</h2>
                   <div className="ion-margin-top">
-                    <IonButton
-                      type="button"
-                      color="primary"
-                      onClick={() => {
-                        history.push('/home', { direction: 'none' })
-                      }}
-                    >
-                      Login With Github
-                    </IonButton>
+                    <LoginButton name="Login With Github" color="primary" />
                   </div>
                   <IonButton
                     fill="clear"

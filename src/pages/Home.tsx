@@ -1,5 +1,4 @@
 import {
-  IonButton,
   IonButtons,
   IonContent,
   IonFab,
@@ -20,16 +19,16 @@ import { useState } from 'react'
 import { useMutation } from 'react-query'
 import { useKey } from 'react-use'
 import api, { Session } from '../api'
-import { useAuth } from '../AppContext'
 import DayView from '../components/DayView'
 import WeekView from '../components/WeekView'
 import CreateSession from '../modals/CreateSession'
 import './Home.scss'
+import LoginButton from '../components/LoginButton'
 
 const Home: React.FC = () => {
   const [view, setView] = useState<string | undefined>('day')
   const [date] = useState(DateTime.now().toISODate())
-  const { loggedIn } = useAuth()
+  
   useKey('d', () => setView('day'))
   useKey('w', () => setView('week'))
 
@@ -45,6 +44,8 @@ const Home: React.FC = () => {
       dismiss()
     }
   })
+  
+  const loggedIn = false
 
   return (
     <IonPage>
@@ -53,7 +54,7 @@ const Home: React.FC = () => {
           <IonTitle>Vehikl Growth Sessions</IonTitle>
           {!loggedIn && (
             <IonButtons slot="end" className="ion-margin-end">
-              <IonButton>Login</IonButton>
+              <LoginButton name="Login" />
             </IonButtons>
           )}
         </IonToolbar>
