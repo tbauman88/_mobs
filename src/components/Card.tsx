@@ -31,9 +31,9 @@ import {
 import { DateTime } from 'luxon'
 import { useCallback, useState } from 'react'
 import { useMedia } from 'react-use'
-import { Session } from '../../api'
-import { useSessions } from '../../AppContext'
-import { convertTimeDiff } from '../../utils/helpers'
+import { Session } from '../api'
+import { useSessions } from '../AppContext'
+import { convertTimeDiff } from '../utils/helpers'
 import './Card.scss'
 
 type ActionProps = {

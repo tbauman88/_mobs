@@ -1,6 +1,6 @@
 import { useQuery } from 'react-query'
 import api, { Session } from '../api'
-import Card from './Card/Card'
+import Card from './Card'
 import LoadingError from './Loading'
 
 const DayView: React.FC = () => {

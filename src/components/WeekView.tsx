@@ -4,9 +4,7 @@ import {
   IonCol,
   IonGrid,
   IonIcon,
-  IonItem,
   IonItemDivider,
-  IonList,
   IonRow,
   IonText,
   useIonModal
@@ -17,8 +15,7 @@ import { useEffect, useState } from 'react'
 import { useMutation, useQuery } from 'react-query'
 import api, { Session } from '../api'
 import CreateSession from '../modals/CreateSession'
-import Card from './Card/Card'
-import WeekCard from './Card/WeekCard'
+import Card from './Card'
 import LoadingError from './Loading'
 
 const DayHeader: React.FC<{ date: DateTime; day: DateTime; onClick: any }> = ({
